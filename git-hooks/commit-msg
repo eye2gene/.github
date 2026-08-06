@@ -1,0 +1,48 @@
+#!/bin/sh
+# commit-msg hook — validates commit message format per .gitmessage convention
+# IEC 62304 §8.2.4: Every change must be traceable via structured commit messages.
+#
+# To install: git config core.hooksPath git-hooks
+
+SUBJECT=$(head -1 "$1")
+
+# Check TYPE prefix
+if ! echo "$SUBJECT" | grep -qE '^\[(REQ|FIX|TEST|REFACTOR|SOUP|DOCS|BUILD|RELEASE)\] '; then
+  echo ""
+  echo "ERROR: Commit message subject must start with a valid [TYPE] prefix."
+  echo ""
+  echo "  Valid types: REQ, FIX, TEST, REFACTOR, SOUP, DOCS, BUILD, RELEASE"
+  echo "  Example:     [DOCS] Add branch protection documentation"
+  echo ""
+  echo "  See .gitmessage for the full template."
+  echo ""
+  exit 1
+fi
+
+# Check subject length (TYPE prefix + description should be reasonable)
+if [ ${#SUBJECT} -gt 72 ]; then
+  echo ""
+  echo "ERROR: Commit subject line is ${#SUBJECT} characters (max 72)."
+  echo ""
+  echo "  Subject: $SUBJECT"
+  echo ""
+  echo "  Move details to the body (separated by a blank line)."
+  echo ""
+  exit 1
+fi
+
+# Check for blank line after subject (if there's a body)
+LINECOUNT=$(wc -l < "$1" | tr -d ' ')
+if [ "$LINECOUNT" -gt 1 ]; then
+  SECOND_LINE=$(sed -n '2p' "$1")
+  if [ -n "$SECOND_LINE" ]; then
+    echo ""
+    echo "ERROR: Second line must be blank (separates subject from body)."
+    echo ""
+    echo "  Line 2: '$SECOND_LINE'"
+    echo ""
+    exit 1
+  fi
+fi
+
+exit 0

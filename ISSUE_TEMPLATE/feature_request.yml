@@ -1,0 +1,37 @@
+name: Feature Request
+description: Propose a new feature or enhancement
+title: "[REQ] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What do you want to happen?
+      description: As a [role], I want [action], so that [benefit].
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why is this needed?
+      description: The problem this solves or the value it adds.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Measurable, testable conditions for this to be considered done.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Any alternative approaches and why they were not chosen.

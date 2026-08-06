@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: QMS Document Changes
+    url: https://qms.eye2gene.com
+    about: For changes to QMS-controlled documents (SOPs, policies, product records), use the QMS system.
+  - name: Risk Management Updates
+    url: https://qms.eye2gene.com/risk_management
+    about: For updates to a product's Risk Management File, hazard log, or risk controls.
+  - name: Create a CAPA
+    url: https://qms.eye2gene.com/core/work_instructions/wi-4_creation_of_a_capa
+    about: Corrective and Preventive Action per WI-4. For systemic issues requiring root cause analysis.
+  - name: Create a NCR
+    url: https://qms.eye2gene.com/core/work_instructions/wi-3_creation_of_a_non-conformace_report_ncr
+    about: Non-Conformance Report per WI-3. For deviations from QMS procedures or product specifications.
+  - name: Create a Complaint
+    url: https://qms.eye2gene.com/core/work_instructions/wi-5_creation_of_a_complaint
+    about: Complaint handling per WI-5. For external feedback about a device from users or customers.

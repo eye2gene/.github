@@ -1,0 +1,29 @@
+[TYPE] Short description (50 chars max)
+
+# Body: explain what and why, not how
+# Wrap at 72 characters.
+
+
+
+# Refs: link to issues, requirements, or risk controls
+Refs: #
+
+# ---
+# TYPE must be one of:
+#   REQ   - Implements a requirement (link to requirement/feature issue)
+#   FIX   - Fixes a defect (link to bug issue)
+#   TEST  - Adds or updates tests (link to related issue)
+#   REFACTOR - No functional change (link to parent issue if applicable)
+#   SOUP  - Dependency added/updated/removed
+#   DOCS  - Documentation only
+#   BUILD - Build system or CI changes
+#   RELEASE - Version bump and release preparation
+#
+# Rules:
+#   - Subject line: imperative mood ("Add feature" not "Added feature")
+#   - Refs: at least one issue number for commits to main
+#   - For feature branches: Refs optional on individual commits
+#     (traceability enforced at PR merge via squash)
+#
+# IEC 62304 §8.2.4: Every change to main must be traceable to a
+# requirement, problem report, or change request.

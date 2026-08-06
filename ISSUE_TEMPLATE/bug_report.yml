@@ -1,0 +1,52 @@
+name: Bug Report
+description: Report a defect or unexpected behaviour in this repository
+title: "[FIX] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+      placeholder: |
+        **Did:** [action taken]
+        **Saw:** [what actually happened]
+        **Expected:** [what should have happened]
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Navigate to ...
+        2. Click ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser/OS/version/build where observed
+      placeholder: "Chrome 130 / macOS / commit abc1234"
+    validations:
+      required: false
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Screenshots, console logs, or other supporting evidence
+
+  - type: textarea
+    id: risk_note
+    attributes:
+      label: Patient Safety / Clinical Risk (if applicable)
+      description: >
+        If this repository is part of a regulated product and this defect could
+        plausibly affect clinical decision-making or patient safety, note the
+        candidate hazard here (or "NO MATCHING HAZARD"). Otherwise leave blank.
+      placeholder: "Candidate hazard: HZ-XXX or NO MATCHING HAZARD"

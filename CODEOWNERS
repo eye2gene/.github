@@ -1,0 +1,12 @@
+# CODEOWNERS - Org-wide default
+# Per IEC 62304 §8.2.1 (Approve change requests)
+#
+# This is the fallback CODEOWNERS used by any Eye2Gene repository that does
+# not define its own. Repos should add a local .github/CODEOWNERS (or
+# CODEOWNERS at repo root) to assign ownership per file area — a repo's own
+# file always takes precedence over this default.
+#
+# Team handles must be fully-qualified (@eye2gene/team-name) to resolve as a
+# GitHub team review request.
+
+* @eye2gene/technical-leads
