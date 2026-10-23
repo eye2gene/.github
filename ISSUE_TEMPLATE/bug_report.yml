@@ -1,0 +1,80 @@
+name: Bug Report
+description: Report a defect or unexpected behaviour in this repository
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+      placeholder: |
+        **Did:** [action taken]
+        **Saw:** [what actually happened]
+        **Expected:** [what should have happened]
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Navigate to ...
+        2. Click ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Version / build where first observed
+      description: Release version, commit hash or build, plus browser/OS. SOP-25 §5.6.2.1 requires the version where the bug was first found.
+      placeholder: "v1.2.0 / commit abc1234 / Chrome 130 / macOS"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bug_type
+    attributes:
+      label: Type
+      description: Classification per SOP-25 §5.6.2.2. Leave blank if unsure; set at triage. Choose Safety if there is any indication of potential harm to patients or others.
+      options:
+        - Cosmetic
+        - Functional
+        - Human Interface
+        - Inter-operability
+        - Performance
+        - Safety
+        - Security
+    validations:
+      required: false
+
+  - type: dropdown
+    id: criticality
+    attributes:
+      label: Criticality / Priority
+      description: Per SOP-25 §5.6.2.2. Leave blank if unsure; set at triage. Safety-type bugs are always High.
+      options:
+        - None
+        - Low
+        - Moderate
+        - High
+    validations:
+      required: false
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Screenshots, console logs or other evidence. No patient data, identifying filenames or secrets; redact or use synthetic examples.
+
+  - type: textarea
+    id: risk_note
+    attributes:
+      label: Patient Safety / Clinical Risk (if applicable)
+      description: >
+        If this repository is part of a regulated product and this defect could
+        plausibly affect clinical decision-making or patient safety, note the
+        candidate hazard here (or "NO MATCHING HAZARD"). Otherwise leave blank.
+      placeholder: "Candidate hazard: HZ-XXX or NO MATCHING HAZARD"

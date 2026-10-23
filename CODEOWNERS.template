@@ -1,0 +1,13 @@
+# Copy to <repo>/.github/CODEOWNERS and edit. Required in every repo:
+# CODEOWNERS does not inherit from eye2gene/.github, and without it
+# "Require review from Code Owners" silently enforces nothing (SOP-25 §5.1.3.5).
+# Handles must be @eye2gene/<team> with write access. Later rules win.
+# The Project Lead must resolve as an owner.
+
+*                  @eye2gene/technical-leads
+
+# Regulated repos: QA owns process and QMS-facing files
+# /.github/        @eye2gene/quality-assurance
+# /docs/           @eye2gene/quality-assurance
+# /CHANGELOG.md    @eye2gene/quality-assurance
+# /docs/risk/      @eye2gene/technical-leads

@@ -1,0 +1,45 @@
+name: PR Lint
+
+# Reusable check: the PR title is a Conventional Commits subject (it becomes the
+# squash commit on main) and the body links an issue (SOP-25 §5.6.2.10).
+# Rules: WI-19 Git & GitHub Conventions; CONTRIBUTING.md.
+#
+# Call it from a repo:
+#
+#   name: PR Lint
+#   on:
+#     pull_request:
+#       types: [opened, edited, reopened, synchronize]
+#   jobs:
+#     lint:
+#       uses: eye2gene/.github/.github/workflows/pr-lint.yml@main
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  pr-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check title and issue link
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+          BODY: ${{ github.event.pull_request.body }}
+        run: |
+          TYPES='feat|fix|test|refactor|perf|style|docs|build|ci|chore|revert'
+          status=0
+          if ! printf '%s\n' "$TITLE" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^ ]"; then
+            echo "::error title=PR title::Use '<type>(<scope>): <subject>', e.g. 'fix(api): handle empty scan list'. Types: ${TYPES//|/ }. Got: $TITLE"
+            status=1
+          elif [ ${#TITLE} -gt 72 ]; then
+            echo "::error title=PR title::Title is ${#TITLE} characters (max 72)."
+            status=1
+          fi
+          REF='(close[sd]?|fix(e[sd])?|resolve[sd]?|refs?):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[^[:space:]]+/issues/[0-9]+)'
+          if ! printf '%s\n' "$BODY" | grep -qiE "$REF"; then
+            echo "::error title=Issue link::Add 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10)."
+            status=1
+          fi
+          exit $status

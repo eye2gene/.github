@@ -1,0 +1,3 @@
+# Owners for THIS repo only. CODEOWNERS does not inherit to other repos;
+# each repo needs its own (start from CODEOWNERS.template). SOP-25 §5.1.3.5.
+* @eye2gene/technical-leads
