@@ -1,122 +1,76 @@
-# Contributing to Eye2Gene Projects
+# Contributing to Eye2Gene
 
-This is the org-wide default. It applies to any Eye2Gene repository that doesn't
-define its own `CONTRIBUTING.md`. If a repo has stricter local rules (e.g. regulated
-SaMD products), those take precedence — see
-[extending-for-regulated-repos.md](extending-for-regulated-repos.md).
+Quick reference. The controlled rules and their rationale are in
+**WI-19 Git & GitHub Conventions** (QMS). A repo's own `CONTRIBUTING.md` or its
+Software Development Plan may add stricter rules; the stricter rule wins.
 
-## Merge Strategy
+## Flow (SOP-25 §5.1.3, SDP §10.3)
 
-Repositories use **squash merge** as the only merge method into `main`.
+1. **Issue first.** Every change traces to a GitHub issue: bug, requirement or change request.
+2. **Branch** from `main`: `<type>/<issue>-<slug>`, e.g. `fix/78-pagination-offset`.
+3. **Commit** freely on the branch. Rebase and fixups are fine; never rewrite `main`.
+4. **Open a PR** with the template. The PR title becomes the commit on `main`.
+5. **Merge** by squash once CI is green and a code owner approves (SOP-25 §5.1.3.5).
+   The branch is deleted and the issue closed.
 
-| Rule | Reason |
-|------|--------|
-| Squash merge only | Each change on `main` is one atomic, traceable commit (IEC 62304 §8.2.4) |
-| PR body becomes commit message | Traceability metadata from the PR template is preserved in git history |
-| Feature branch commits are free-form | No enforcement on individual commits during development |
-| Direct push to `main` prohibited | Branch protection ensures all changes go through PR review |
-
-See [branch-protection.md](branch-protection.md) for the full repository settings baseline.
-
-## Setup
-
-To adopt the commit-message convention below in a repository, copy in
-[`.gitmessage`](.gitmessage) and [`git-hooks/commit-msg`](git-hooks/commit-msg), then run:
-
-```bash
-git config core.hooksPath git-hooks
-git config commit.template .gitmessage
-```
-
-This enables:
-- **commit-msg hook** — rejects commits that don't match the `[TYPE] Subject` format
-- **commit template** — pre-fills the message structure when using `git commit` without `-m`
-
-Repositories can also opt into the reusable
-[`pr-title-lint.yml`](.github/workflows/pr-title-lint.yml) workflow as a CI backstop for
-contributors who haven't run the local setup.
-
-## Commit Message Format
-
-### Format
+## Commits: [Conventional Commits](https://www.conventionalcommits.org) (SDP-QTF-1 §4.2)
 
 ```
-[TYPE] Short imperative description
+fix(scan-list): correct pagination offset
 
-Body explaining what and why.
-
-Refs: #123
-```
-
-### Types
-
-| Type | Use when | Should link to |
-|------|----------|-----------------|
-| REQ | Implementing a requirement | Requirement/feature issue |
-| FIX | Fixing a defect | Bug issue |
-| TEST | Adding/updating tests | Related issue |
-| REFACTOR | Internal change, no functional impact | Parent issue (if applicable) |
-| SOUP | Dependency added/updated/removed | SOUP list update, if the repo maintains one |
-| DOCS | Documentation only | N/A |
-| BUILD | CI/build system | N/A |
-| RELEASE | Version bump, release prep | Release issue/checklist |
-
-### Examples
-
-```
-[FIX] Correct pagination offset in scan list endpoint
-
-Off-by-one error caused the last result on each page to be
-dropped. Affected the Grading Queue view.
+Off-by-one dropped the last result on each page.
 
 Refs: #78
-Closes: #78
 ```
 
+| Type | Use for |
+|---|---|
+| `feat` | New or changed requirement |
+| `fix` | Defect; `Refs:` the bug issue (SOP-25 §5.6.2.10) |
+| `build(deps)` | SOUP added, updated or removed; update the SOUP list |
+| `test` `refactor` `perf` `style` `docs` `ci` `chore` `revert` | As named |
+| `chore(release)` | Version bump, release prep |
+
+- Subject: imperative, max 72 characters, no full stop. `type!:` marks a breaking change.
+- Trailers go in the last paragraph: `Refs: #N` (or `Closes: #N`, or `org/repo#N`).
+  Regulated repos may add `Requirement:` and `Risk-Control:` with IDs exactly as in Formwork,
+  qualified by document when the ID is document-scoped (e.g. `PRS-DP-1 SEC-001`).
+- `Refs:` is required on `main` and optional on branch commits, because the squash carries the PR's.
+
+Local setup (copy `.gitmessage` and `git-hooks/` into the repo first):
+
+```bash
+git config core.hooksPath git-hooks && git config commit.template .gitmessage
 ```
-[SOUP] Update Plotly.js from 2.27.0 to 2.30.0
 
-Security patch for a reported XSS in hover labels. No
-functional changes to our usage.
+CI backstop: call [`pr-lint.yml`](.github/workflows/pr-lint.yml), which checks the PR title and issue link.
 
-Refs: #92
-```
+## Review comments
 
-## Branch Naming
+Start each comment with a label so intent is unambiguous:
 
-```
-<type>/<issue-number>-<short-description>
-```
+| Label | Meaning |
+|---|---|
+| `blocking:` | Must be fixed before merge. Say why. |
+| `suggestion:` | Optional improvement; author decides |
+| `question:` | Needs an answer, not necessarily a change |
+| `nit:` | Trivial or style; never blocks |
+| `praise:` | Worth keeping |
 
-Examples:
-- `req/45-add-export-endpoint`
-- `fix/78-pagination-offset`
-- `docs/92-update-readme`
-
-## Pull Request Requirements
-
-Every PR to `main` must:
-
-1. Use the PR template (auto-loaded from [`PULL_REQUEST_TEMPLATE.md`](PULL_REQUEST_TEMPLATE.md))
-2. Link to at least one issue — create one first if none exists
-3. Pass all CI checks
-4. Be approved by a code owner (per [`CODEOWNERS`](CODEOWNERS) or the repo's own)
-5. Be merged with squash merge (enforced by repository settings)
+The author replies with the fixing commit or a reason. The reviewer resolves their own `blocking:` threads.
 
 ## Issues
 
-Use the templates under [`ISSUE_TEMPLATE/`](ISSUE_TEMPLATE/). Quality events (CAPA,
-NCR, complaints, RMF/hazard updates, QMS document changes) are filed through the QMS
-system, not as GitHub issues — see [`ISSUE_TEMPLATE/config.yml`](ISSUE_TEMPLATE/config.yml)
-for the routing links.
+- Use the forms. The triager adds the component label (SOP-25 §5.1.3.4).
+- Quality events (NCR, CAPA, complaint, security incident, data breach) go in the
+  QMS repository, not here (SOP-3, SOP-33). The issue chooser links to them.
 
-## For Auditors
+## Data
 
-To verify traceability for any change on a repo following this convention:
+Never put patient data, identifying filenames, customer files or secrets in an
+issue, PR, commit, comment, log or screenshot.
 
-1. `git log --oneline main` — see all changes with type prefix
-2. Pick any commit — read the body for `Refs:` lines
-3. Follow the issue link — see the requirement/defect/test scenario with full metadata
+## AI agents
 
-This satisfies IEC 62304 §8.2.4 (traceability of change) and §8.3 (configuration status
-accounting).
+Agents follow [`AGENTS.md`](AGENTS.md). The human who opens or approves the
+PR is accountable for every line.

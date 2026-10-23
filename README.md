@@ -1,20 +1,39 @@
 # .github
 
-Default health files (issue/PR templates, contributing guidelines) for all Eye2Gene repositories. Any file
-here applies automatically to a repo that doesn't define its own copy.
+Org-wide templates for Eye2Gene repositories. The rules and their rationale
+live in the QMS, in **WI-19 Git & GitHub Conventions**; this repo holds only
+what people and agents use day to day.
 
-## What's here
+| File | Applies to other repos | Purpose |
+|---|---|---|
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Automatically | One-page quick reference: flow, commits, review comments |
+| [`PULL_REQUEST_TEMPLATE.md`](PULL_REQUEST_TEMPLATE.md) | Automatically | PR body with the SOP-2 impact assessment |
+| [`ISSUE_TEMPLATE/`](ISSUE_TEMPLATE/) | Automatically | Bug and feature forms; routes quality events to the QMS repo |
+| [`SECURITY.md`](SECURITY.md) | Automatically | Vulnerability reporting |
+| [`.gitmessage`](.gitmessage), [`git-hooks/commit-msg`](git-hooks/commit-msg) | Copy in | Commit template and format check |
+| [`pr-lint.yml`](.github/workflows/pr-lint.yml) | Call from the repo | CI check: PR title format and issue link |
+| [`CODEOWNERS.template`](CODEOWNERS.template) | Copy in | Required per repo; does not inherit |
+| [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents |
+| [`plugins/eye2gene-qms`](plugins/eye2gene-qms) | Install | Optional agent skills: commit, PR, issue, review |
 
-| File | Purpose |
-|------|---------|
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Commit message convention (`[TYPE] Subject`), branch naming, PR/merge rules |
-| [`branch-protection.md`](branch-protection.md) | Baseline `main` branch protection settings |
-| [`PULL_REQUEST_TEMPLATE.md`](PULL_REQUEST_TEMPLATE.md) | Default PR template |
-| [`ISSUE_TEMPLATE/`](ISSUE_TEMPLATE/) | Default bug report / feature request forms |
-| [`CODEOWNERS`](CODEOWNERS) | Default review-request fallback |
-| [`SECURITY.md`](SECURITY.md) | Vulnerability reporting policy |
-| [`.gitmessage`](.gitmessage) + [`git-hooks/commit-msg`](git-hooks/commit-msg) | Copyable commit-message template and enforcement hook |
-| [`.github/workflows/pr-title-lint.yml`](.github/workflows/pr-title-lint.yml) | Reusable CI workflow other repos can call to enforce PR title format |
-| [`extending-for-regulated-repos.md`](extending-for-regulated-repos.md) | How regulated/SaMD repos layer stricter local overrides |
+GitHub inherits only the community health files marked "Automatically" (repos
+can override them). Everything else must be copied or called per repo, and
+branch protection must be set in each repo's settings (WI-19).
 
-Start with [`CONTRIBUTING.md`](CONTRIBUTING.md) if you're new to the org's conventions.
+## New repo setup
+
+```bash
+cp <this-repo>/{.gitmessage,AGENTS.md} . && cp -r <this-repo>/git-hooks .
+cp <this-repo>/CODEOWNERS.template .github/CODEOWNERS   # then edit
+printf '@AGENTS.md\n' > CLAUDE.md                        # Claude Code reads CLAUDE.md
+git config core.hooksPath git-hooks && git config commit.template .gitmessage
+```
+
+Then add the `pr-lint.yml` caller (see the comment at the top of that file) and apply branch protection.
+
+## Agent skills (optional)
+
+Claude Code: `/plugin marketplace add eye2gene/.github`, then
+`/plugin install eye2gene-qms@eye2gene`. The skills run only when invoked
+(`/eye2gene-qms:commit`, `:pr`, `:issue`, `:review`). Other agents can read the
+`SKILL.md` files directly; they're plain Markdown.

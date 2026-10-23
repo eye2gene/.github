@@ -1,0 +1,8 @@
+{
+  "name": "eye2gene-qms",
+  "version": "0.1.0",
+  "description": "On-demand skills for QMS-aligned commits, PRs, issues and code review in Eye2Gene repos",
+  "author": { "name": "Eye2Gene" },
+  "repository": "https://github.com/eye2gene/.github",
+  "skills": "./skills/"
+}

@@ -1,29 +1,19 @@
-[TYPE] Short description (50 chars max)
 
-# Body: explain what and why, not how
-# Wrap at 72 characters.
-
-
-
-# Refs: link to issues, requirements, or risk controls
-Refs: #
-
-# ---
-# TYPE must be one of:
-#   REQ   - Implements a requirement (link to requirement/feature issue)
-#   FIX   - Fixes a defect (link to bug issue)
-#   TEST  - Adds or updates tests (link to related issue)
-#   REFACTOR - No functional change (link to parent issue if applicable)
-#   SOUP  - Dependency added/updated/removed
-#   DOCS  - Documentation only
-#   BUILD - Build system or CI changes
-#   RELEASE - Version bump and release preparation
+# ^ <type>(<scope>): <subject>   imperative, max 72 chars, no full stop
+#   e.g. fix(scan-list): correct pagination offset
 #
-# Rules:
-#   - Subject line: imperative mood ("Add feature" not "Added feature")
-#   - Refs: at least one issue number for commits to main
-#   - For feature branches: Refs optional on individual commits
-#     (traceability enforced at PR merge via squash)
+# Body: what changed and why (not how). Wrap at 72.
 #
-# IEC 62304 §8.2.4: Every change to main must be traceable to a
-# requirement, problem report, or change request.
+# Trailers, last paragraph, one per line:
+#   Refs: #123               required on main (SOP-25 §5.6.2.10)
+#   Requirement: PRS-DP-1 SEC-001  regulated repos; qualify bare IDs with their document
+#   Risk-Control: RC-TD-005        regulated repos, when applicable
+#
+# Types: feat fix test refactor perf style docs build ci chore revert
+#   feat           new or changed requirement
+#   fix            defect (Refs the bug issue)
+#   build(deps)    SOUP added/updated/removed (update the SOUP list)
+#   chore(release) version bump, release prep
+#   type!:         breaking change, e.g. feat(api)!: drop v1 routes
+#
+# Full rules: WI-19 Git & GitHub Conventions (QMS)

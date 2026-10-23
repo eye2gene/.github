@@ -1,45 +1,33 @@
-<!-- PR title becomes the commit subject on `main` after squash merge. Format: [TYPE] Short description -->
-<!-- See CONTRIBUTING.md for the full [TYPE] convention. -->
+<!-- Title becomes the squash commit on main: <type>(<scope>): <subject>
+     e.g. fix(scan-list): correct pagination offset. Rules: CONTRIBUTING.md / WI-19.
+     Never paste patient data, identifying filenames or secrets anywhere in a PR. -->
 
-## Change Description
+## What changed
+<!-- SOP-2 §5.1.2.1 -->
 
-<!-- Brief description of what this PR does and why -->
+## Why
+<!-- SOP-2 §5.1.2.2: the defect, requirement or request behind it -->
 
-## Linked Issue(s)
+## Impact assessment
+<!-- SOP-2 §5.1.2.3: tick all that apply. Product design/configuration or risk
+     means product change control: use the repo's regulated template if it has one. -->
+- [ ] None outside this repository
+- [ ] Product design / configuration
+- [ ] Risk management (risk control affected or new hazard)
+- [ ] Regulatory / QA (process or QMS document)
+- [ ] SOUP / supplier (SOUP list updated)
+- [ ] Data protection / patient data
 
-<!-- Every PR should link to at least one issue. Use GitHub keywords to auto-close. -->
+## Verification
+<!-- What you ran and the result. "Docs only" if nothing to test. -->
 
-- Closes #
-- Relates to #
+## Checklist
+- [ ] CI green, no new lint warnings
+- [ ] Impact assessment completed
+- [ ] Code-owner review requested
 
-## Change Type
+<!-- Traceability: keep as the last lines; they become the commit trailers.
+     Closes:/Refs: is required (SOP-25 §5.6.2.10). Regulated repos may add
+     Requirement: PRS-DP-1 SEC-001 and Risk-Control: RC-TD-005 lines. -->
 
-- [ ] Bugfix
-- [ ] Feature
-- [ ] Refactor
-- [ ] Dependency update
-- [ ] Documentation
-- [ ] Test
-- [ ] Build/CI
-
-## Testing Done
-
-- [ ] Unit tests
-- [ ] Integration tests
-- [ ] E2E tests
-- [ ] Manual testing
-- [ ] No testing required (documentation only)
-
-## Pre-Merge Checklist
-
-- [ ] All CI checks pass
-- [ ] PR linked to at least one issue
-- [ ] No new linting warnings introduced
-- [ ] Code-owner review completed
-
-<!--
-This is the org-wide default template. Repos with additional regulatory
-obligations (Risk Impact, SOUP tracking, traceability sections) should keep
-or add their own local PULL_REQUEST_TEMPLATE.md — see
-extending-for-regulated-repos.md for the reference pattern.
--->
+Closes: #

@@ -1,6 +1,5 @@
 name: Bug Report
 description: Report a defect or unexpected behaviour in this repository
-title: "[FIX] "
 labels: ["bug"]
 body:
   - type: textarea
@@ -29,9 +28,38 @@ body:
   - type: input
     id: environment
     attributes:
-      label: Environment
-      description: Browser/OS/version/build where observed
-      placeholder: "Chrome 130 / macOS / commit abc1234"
+      label: Version / build where first observed
+      description: Release version, commit hash or build, plus browser/OS. SOP-25 §5.6.2.1 requires the version where the bug was first found.
+      placeholder: "v1.2.0 / commit abc1234 / Chrome 130 / macOS"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bug_type
+    attributes:
+      label: Type
+      description: Classification per SOP-25 §5.6.2.2. Leave blank if unsure; set at triage. Choose Safety if there is any indication of potential harm to patients or others.
+      options:
+        - Cosmetic
+        - Functional
+        - Human Interface
+        - Inter-operability
+        - Performance
+        - Safety
+        - Security
+    validations:
+      required: false
+
+  - type: dropdown
+    id: criticality
+    attributes:
+      label: Criticality / Priority
+      description: Per SOP-25 §5.6.2.2. Leave blank if unsure; set at triage. Safety-type bugs are always High.
+      options:
+        - None
+        - Low
+        - Moderate
+        - High
     validations:
       required: false
 
@@ -39,7 +67,7 @@ body:
     id: evidence
     attributes:
       label: Evidence
-      description: Screenshots, console logs, or other supporting evidence
+      description: Screenshots, console logs or other evidence. No patient data, identifying filenames or secrets; redact or use synthetic examples.
 
   - type: textarea
     id: risk_note

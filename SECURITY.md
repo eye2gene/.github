@@ -7,13 +7,15 @@ repository defines its own `SECURITY.md`, that takes precedence.
 
 Please do **not** open a public GitHub issue for security vulnerabilities.
 
-Instead, report it privately to **security@eye2gene.com**, including:
+Instead, report it privately including:
 
 - A description of the vulnerability and its potential impact
 - Steps to reproduce
 - Affected repository/version/commit, if known
 
-We aim to acknowledge reports within 5 business days.
+Reports are triaged and remediated by Engineering under POL-8 Threat and
+Vulnerability Management Policy. We aim to acknowledge external reports within
+5 business days; that target is a courtesy to reporters, not a QMS commitment.
 
 ## Scope
 
@@ -22,8 +24,16 @@ third-party dependencies (SOUP), report upstream as well as to us if it
 affects an Eye2Gene product — see the repository's SOUP/dependency list if it
 maintains one.
 
-## Patient Data
+## Security Incidents and Patient Data
 
-If a report involves potential exposure of patient or personal data, treat it
-as an incident per the QMS incident-handling process (WI-15) in addition to
-reporting here.
+A report that indicates an actual or suspected security incident (unauthorised
+access, altered data, compromised credentials, misuse of Eye2Gene servers) or
+any exposure of patient or personal data is handled under SOP-33 Security
+Incident Response Plan, in addition to the vulnerability handling above:
+
+- Notify the VP of Engineering and the Information Security Officer
+  immediately. For a suspected personal-data breach, also notify the Data
+  Protection Officer (SOP-33 §5.2).
+- Log the event as a Quality Event of type Data Breach / Security Incident in
+  the QMS repository (SOP-33 §5.2.4) so it is tracked to closure and root-cause
+  analysis (SOP-33 §5.9).
