@@ -11,7 +11,7 @@ case "$SUBJECT" in
 esac
 
 TYPES='feat|fix|test|refactor|perf|style|docs|build|ci|chore|revert'
-fail() { printf '\nERROR: %s\n\n  %s\n\n  Format: <type>(<scope>): <subject>   e.g. fix(api): handle empty scan list\n  Types:  %s\n  See .gitmessage or CONTRIBUTING.md.\n\n' "$1" "$SUBJECT" "$TYPES" | sed 's/|/ /g' >&2; exit 1; }
+fail() { printf '\nERROR: %s\n\n  %s\n\n  Format: <type>[(<scope>)][!]: <subject>   e.g. fix(api): handle empty scan list\n  Types:  %s\n  See .gitmessage or CONTRIBUTING.md.\n\n' "$1" "$SUBJECT" "$TYPES" | sed 's/|/ /g' >&2; exit 1; }
 
 printf '%s\n' "$SUBJECT" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^ ]" \
   || fail "Subject must follow Conventional Commits."

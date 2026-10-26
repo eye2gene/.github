@@ -31,7 +31,10 @@ Refs: #78
 | `test` `refactor` `perf` `style` `docs` `ci` `chore` `revert` | As named |
 | `chore(release)` | Version bump, release prep |
 
-- Subject: imperative, max 72 characters, no full stop. `type!:` marks a breaking change.
+- Format: `<type>[(<scope>)][!]: <subject>`. Scope is optional: `fix: …` and `fix(scan-list): …` are both fine.
+- Subject: imperative, max 72 characters, no full stop.
+- `!` marks a breaking change (`feat!: …`, `fix(api)!: …`); under semantic-release it bumps the major version.
+  Explain what breaks in the body or a `BREAKING CHANGE:` trailer, and assess impact in the PR.
 - Trailers go in the last paragraph: `Refs: #N` (or `Closes: #N`, or `org/repo#N`).
   Regulated repos may add `Requirement:` and `Risk-Control:` with IDs exactly as in Formwork,
   qualified by document when the ID is document-scoped (e.g. `PRS-DP-1 SEC-001`).

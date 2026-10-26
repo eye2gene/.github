@@ -31,7 +31,7 @@ jobs:
           TYPES='feat|fix|test|refactor|perf|style|docs|build|ci|chore|revert'
           status=0
           if ! printf '%s\n' "$TITLE" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^ ]"; then
-            echo "::error title=PR title::Use '<type>(<scope>): <subject>', e.g. 'fix(api): handle empty scan list'. Types: ${TYPES//|/ }. Got: $TITLE"
+            echo "::error title=PR title::Use '<type>[(<scope>)][!]: <subject>', e.g. 'fix(api): handle empty scan list'. Types: ${TYPES//|/ }. Got: $TITLE"
             status=1
           elif [ ${#TITLE} -gt 72 ]; then
             echo "::error title=PR title::Title is ${#TITLE} characters (max 72)."

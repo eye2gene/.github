@@ -1,5 +1,5 @@
-<!-- Title becomes the squash commit on main: <type>(<scope>): <subject>
-     e.g. fix(scan-list): correct pagination offset. Rules: CONTRIBUTING.md / WI-19.
+<!-- Title becomes the squash commit on main: <type>[(<scope>)][!]: <subject>
+     e.g. fix(scan-list): correct pagination offset. ! = breaking change. Rules: CONTRIBUTING.md / WI-19.
      Never paste patient data, identifying filenames or secrets anywhere in a PR. -->
 
 ## What changed
@@ -10,7 +10,8 @@
 
 ## Impact assessment
 <!-- SOP-2 §5.1.2.3: tick all that apply. Product design/configuration or risk
-     means product change control: use the repo's regulated template if it has one. -->
+     means product change control: use the repo's regulated template if it has one.
+     A breaking change (! in the title) is never "None". -->
 - [ ] None outside this repository
 - [ ] Product design / configuration
 - [ ] Risk management (risk control affected or new hazard)

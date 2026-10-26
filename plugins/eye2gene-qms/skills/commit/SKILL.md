@@ -12,7 +12,7 @@ disable-model-invocation: true
 3. Draft:
 
    ```
-   <type>(<scope>): <imperative subject, max 72 chars, no full stop>
+   <type>[(<scope>)][!]: <imperative subject, max 72 chars, no full stop>
 
    <what changed and why, wrapped at 72; omit for trivial changes>
 
@@ -21,7 +21,9 @@ disable-model-invocation: true
 
    Types: `feat` (requirement), `fix` (defect), `build(deps)` (SOUP change),
    `test`, `refactor`, `perf`, `style`, `docs`, `ci`, `chore`, `revert`,
-   `chore(release)`. Add `!` after the type for breaking changes.
+   `chore(release)`. Scope is optional; use one only if the repo already does.
+   For a breaking change add `!` before the colon (`feat!:`, `fix(api)!:`)
+   and a `BREAKING CHANGE: <what breaks>` trailer.
    Add `Requirement:` or `Risk-Control:` trailers only with IDs the user or
    the issue gives you.
 4. If the diff changes a dependency manifest, say the SOUP list may need updating.

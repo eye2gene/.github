@@ -1,6 +1,7 @@
 
-# ^ <type>(<scope>): <subject>   imperative, max 72 chars, no full stop
-#   e.g. fix(scan-list): correct pagination offset
+# ^ <type>[(<scope>)][!]: <subject>   imperative, max 72 chars, no full stop
+#   e.g. fix(scan-list): correct pagination offset   or   fix: correct pagination offset
+#   (scope) optional; ! = breaking change
 #
 # Body: what changed and why (not how). Wrap at 72.
 #
@@ -8,12 +9,14 @@
 #   Refs: #123               required on main (SOP-25 §5.6.2.10)
 #   Requirement: PRS-DP-1 SEC-001  regulated repos; qualify bare IDs with their document
 #   Risk-Control: RC-TD-005        regulated repos, when applicable
+#   BREAKING CHANGE: <what breaks>  optional, explains a ! in the subject
 #
 # Types: feat fix test refactor perf style docs build ci chore revert
 #   feat           new or changed requirement
 #   fix            defect (Refs the bug issue)
 #   build(deps)    SOUP added/updated/removed (update the SOUP list)
 #   chore(release) version bump, release prep
-#   type!:         breaking change, e.g. feat(api)!: drop v1 routes
+#   type!: / type(scope)!:  breaking change, e.g. feat(api)!: drop v1 routes
+#                  (major version bump under semantic-release)
 #
 # Full rules: WI-19 Git & GitHub Conventions (QMS)
