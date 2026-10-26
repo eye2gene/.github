@@ -1,0 +1,20 @@
+#!/bin/sh
+# commit-msg: enforce the Conventional Commits subject (WI-19; SDP-QTF-1 §4.2).
+# Install: git config core.hooksPath git-hooks
+# The Refs: trailer is checked on the PR (pr-lint.yml); branch commits are squashed.
+
+MSG=$(sed -e '/^#/d' "$1" | sed -e '/./,$!d')
+SUBJECT=$(printf '%s\n' "$MSG" | head -n 1)
+
+case "$SUBJECT" in
+  "Merge "*|"Revert "*|"fixup! "*|"squash! "*|"amend! "*) exit 0 ;;
+esac
+
+TYPES='feat|fix|test|refactor|perf|style|docs|build|ci|chore|revert'
+fail() { printf '\nERROR: %s\n\n  %s\n\n  Format: <type>[(<scope>)][!]: <subject>   e.g. fix(api): handle empty scan list\n  Types:  %s\n  See .gitmessage or CONTRIBUTING.md.\n\n' "$1" "$SUBJECT" "$TYPES" | sed 's/|/ /g' >&2; exit 1; }
+
+printf '%s\n' "$SUBJECT" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^ ]" \
+  || fail "Subject must follow Conventional Commits."
+[ ${#SUBJECT} -le 72 ] || fail "Subject is ${#SUBJECT} characters (max 72)."
+[ -z "$(printf '%s\n' "$MSG" | sed -n '2p')" ] || fail "Line 2 must be blank (separates subject from body)."
+exit 0

@@ -1,0 +1,23 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Quality Event (NCR, CAPA, Complaint, Incident)
+    url: https://github.com/Eye2Gene/QMS/issues/new/choose
+    about: Quality events are GitHub issues in the QMS repository, created from its NCR/CAPA/Complaint/Incident templates (SOP-3 §5.3). Do not file them here.
+  - name: Security Incident or Data Breach
+    url: https://github.com/Eye2Gene/QMS/issues/new/choose
+    about: First notify the Information Security Officer / DPO immediately per SOP-33 §5.2, then log the event as a Data Breach / Security Incident quality event (SOP-33 §5.2.4).
+  - name: QMS Document Changes
+    url: https://qms.eye2gene.com
+    about: For changes to QMS-controlled documents (SOPs, policies, product records), use the QMS system.
+  - name: Risk Management Updates
+    url: https://qms.eye2gene.com/risk_management
+    about: For updates to a product's Risk Management File, hazard log, or risk controls.
+  - name: How to create a CAPA (WI-4)
+    url: https://qms.eye2gene.com/core/work_instructions/wi-4_creation_of_a_capa
+    about: Corrective and Preventive Action per WI-4. For systemic issues requiring root cause analysis.
+  - name: How to create an NCR (WI-3)
+    url: https://qms.eye2gene.com/core/work_instructions/wi-3_creation_of_a_non-conformace_report_ncr
+    about: Non-Conformance Report per WI-3. For deviations from QMS procedures or product specifications.
+  - name: How to create a Complaint (WI-5)
+    url: https://qms.eye2gene.com/core/work_instructions/wi-5_creation_of_a_complaint
+    about: Complaint handling per WI-5. For external feedback about a device from users or customers.
