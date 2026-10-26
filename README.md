@@ -13,7 +13,7 @@ what people and agents use day to day.
 | [`.gitmessage`](.gitmessage), [`git-hooks/commit-msg`](git-hooks/commit-msg) | Copy in | Commit template and format check |
 | [`pr-lint.yml`](.github/workflows/pr-lint.yml) | Call from the repo | CI check: PR title format and issue link |
 | [`CODEOWNERS.template`](CODEOWNERS.template) | Copy in | Required per repo; does not inherit |
-| [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents |
+| [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents; skip if the repo has its own |
 | [`plugins/eye2gene-qms`](plugins/eye2gene-qms) | Install | Optional agent skills: commit, PR, issue, review |
 
 GitHub inherits only the community health files marked "Automatically" (repos
@@ -30,6 +30,10 @@ git config core.hooksPath git-hooks && git config commit.template .gitmessage
 ```
 
 Then add the `pr-lint.yml` caller (see the comment at the top of that file) and apply branch protection.
+
+Repos generated from `e2g-pypkg` (they have a `.cruft.json`) get commit and agent rules from the
+template: add only `.github/CODEOWNERS` and the `pr-lint` caller, and change anything else in the
+template so `cruft update` carries it.
 
 ## Agent skills (optional)
 

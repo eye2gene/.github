@@ -2,7 +2,8 @@
 
 For any AI coding agent working in an Eye2Gene repository. These are the only
 always-on rules; everything else is the human's own workflow. A repo's own
-`AGENTS.md` or `CLAUDE.md` adds to this, and the stricter rule wins.
+agent rules (`AGENTS.md`, `CLAUDE.md`, `.kiro/steering/`) win on style and
+workflow; the Never list always applies.
 
 You draft; the human decides, approves and is accountable.
 
@@ -18,9 +19,10 @@ You draft; the human decides, approves and is accountable.
 
 ## Always
 
-- Commits: Conventional Commits plus a `Refs: #N` trailer; see `CONTRIBUTING.md`.
+- Commits: Conventional Commits, unless the repo's own rules say otherwise.
 - PRs: fill every section of `PULL_REQUEST_TEMPLATE.md`, including the impact
-  assessment. Write "None" with a reason rather than deleting a section.
+  assessment, and end the body with `Closes: #N`. Write "None" with a reason
+  rather than deleting a section.
 - Review comments: start with `blocking:`, `suggestion:`, `question:` or `nit:`.
 - If a change might touch a requirement, risk control, SOUP or patient data,
   say so and ask; don't decide it.

@@ -6,9 +6,12 @@ disable-model-invocation: true
 
 # Commit message
 
+If the repo has its own commit rules (`AGENTS.md`, `CLAUDE.md`,
+`.kiro/steering/commits.md`), follow those; this skill only fills the gaps.
+
 1. Read `git diff --staged`. If nothing is staged, ask; don't stage files yourself.
-2. Find the issue number from the branch name (`<type>/<N>-<slug>`) or ask.
-   Never invent one.
+2. If the issue number is known (branch `<type>/<N>-<slug>`), add `Refs: #N`.
+   Never invent one; the PR body carries it to `main` anyway.
 3. Draft:
 
    ```
@@ -19,7 +22,7 @@ disable-model-invocation: true
    Refs: #N
    ```
 
-   Types: `feat` (requirement), `fix` (defect), `build(deps)` (SOUP change),
+   Types: `feat` (requirement), `fix` (defect), `chore(deps)` (dependency change),
    `test`, `refactor`, `perf`, `style`, `docs`, `ci`, `chore`, `revert`,
    `chore(release)`. Scope is optional; use one only if the repo already does.
    For a breaking change add `!` before the colon (`feat!:`, `fix(api)!:`)
