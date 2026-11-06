@@ -15,6 +15,7 @@ what people and agents use day to day.
 | [`CODEOWNERS.template`](CODEOWNERS.template) | Copy in | Required per repo; does not inherit |
 | [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents; skip if the repo has its own |
 | [`plugins/eye2gene-qms`](plugins/eye2gene-qms) | Install | Optional agent skills: commit, PR, issue, review |
+| [`EXAMPLES.md`](EXAMPLES.md) | No | How this repo reaches other repos, with worked examples |
 
 GitHub inherits only the community health files marked "Automatically" (repos
 can override them). Everything else must be copied or called per repo, and
