@@ -13,13 +13,18 @@ what people and agents use day to day.
 | [`.gitmessage`](.gitmessage), [`git-hooks/commit-msg`](git-hooks/commit-msg) | Copy in | Commit template and format check |
 | [`pr-lint.yml`](.github/workflows/pr-lint.yml) | Call from the repo | CI check: PR title format and issue link |
 | [`CODEOWNERS.template`](CODEOWNERS.template) | Copy in | Required per repo; does not inherit |
-| [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents; skip if the repo has its own |
+| [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents. Extend below it without contradicting it; recheck your copy when this one changes |
 | [`plugins/eye2gene-qms`](plugins/eye2gene-qms) | Install | Optional agent skills: commit, PR, issue, review |
 | [`EXAMPLES.md`](EXAMPLES.md) | No | How this repo reaches other repos, with worked examples |
 
 GitHub inherits only the community health files marked "Automatically" (repos
 can override them). Everything else must be copied or called per repo, and
-branch protection must be set in each repo's settings (WI-19).
+branch protection must be set in each repo's settings (WI-19), unless an org
+admin covers all repos with one org ruleset.
+
+Language-specific CI (Python today) lives in
+[`eye2gene/e2g-workflows`](https://github.com/eye2gene/e2g-workflows); this repo
+holds only checks that apply to every language, such as `pr-lint`.
 
 ## New repo setup
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 # commit-msg: enforce the Conventional Commits subject (WI-19; SDP-QTF-1 §4.2).
 # Install: git config core.hooksPath git-hooks
-# The Refs: trailer is checked on the PR (pr-lint.yml); branch commits are squashed.
+# The Refs: trailer is checked on the PR (pr-lint.yml), not per commit.
 
 MSG=$(sed -e '/^#/d' "$1" | sed -e '/./,$!d')
 SUBJECT=$(printf '%s\n' "$MSG" | head -n 1)

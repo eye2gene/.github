@@ -15,7 +15,7 @@ stop. For a security incident or breach, the Information Security Officer
 - What happened: Did / Saw / Expected
 - Steps to reproduce
 - Version or build first observed (SOP-25 §5.6.2.1)
-- Type and criticality (SOP-25 §5.6.2.2): leave for triage if unsure. Any hint
+- Scope, type and criticality (SOP-25 §5.6.2.2): leave for triage if unsure. Any hint
   of patient harm → Type: Safety; flag it to the human.
 - Evidence: redacted or synthetic only
 - Patient safety note: a candidate hazard ID or "NO MATCHING HAZARD", only if the user supplies it

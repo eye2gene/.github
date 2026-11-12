@@ -1,4 +1,4 @@
-<!-- Title becomes the squash commit on main: <type>[(<scope>)][!]: <subject>
+<!-- Title becomes the commit on main when squashed: <type>[(<scope>)][!]: <subject>
      e.g. fix(scan-list): correct pagination offset. ! = breaking change. Rules: CONTRIBUTING.md / WI-19.
      Never paste patient data, identifying filenames or secrets anywhere in a PR. -->
 

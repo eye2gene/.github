@@ -12,7 +12,7 @@ disable-model-invocation: true
    What changed, Why, Impact assessment, Verification, Checklist, and a final
    `Closes: #N` line. Keep every section; write "None: <reason>" instead of deleting one.
 3. Title: a Conventional Commits subject, max 72 characters. It becomes the
-   squash commit on `main`.
+   commit on `main` when the PR is squashed.
 4. Impact assessment (SOP-2 §5.1.2.3): tick only what the diff shows. Flag
    these to the human rather than deciding them:
    - dependency manifests changed → SOUP;

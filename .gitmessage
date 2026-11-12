@@ -6,7 +6,7 @@
 # Body: what changed and why (not how). Wrap at 72.
 #
 # Trailers, last paragraph, one per line:
-#   Refs: #123               optional here; the PR body carries it to main
+#   Refs: #123               needed if the branch is merged with a merge commit
 #   Requirement: PRS-DP-1 SEC-001  regulated repos; qualify bare IDs with their document
 #   Risk-Control: RC-TD-005        regulated repos, when applicable
 #   BREAKING CHANGE: <what breaks>  optional, explains a ! in the subject

@@ -11,7 +11,8 @@ If the repo has its own commit rules (`AGENTS.md`, `CLAUDE.md`,
 
 1. Read `git diff --staged`. If nothing is staged, ask; don't stage files yourself.
 2. If the issue number is known (branch `<type>/<N>-<slug>`), add `Refs: #N`.
-   Never invent one; the PR body carries it to `main` anyway.
+   Never invent one. It is required when the branch will be merged with a
+   merge commit (not squashed); if so and the number is unknown, ask.
 3. Draft:
 
    ```
@@ -23,7 +24,7 @@ If the repo has its own commit rules (`AGENTS.md`, `CLAUDE.md`,
    ```
 
    Types: `feat` (requirement), `fix` (defect), `chore(deps)` (dependency change),
-   `test`, `refactor`, `perf`, `style`, `docs`, `ci`, `chore`, `revert`,
+   `test`, `refactor`, `perf`, `style`, `docs`, `build`, `ci`, `chore`, `revert`,
    `chore(release)`. Scope is optional; use one only if the repo already does.
    For a breaking change add `!` before the colon (`feat!:`, `fix(api)!:`)
    and a `BREAKING CHANGE: <what breaks>` trailer.

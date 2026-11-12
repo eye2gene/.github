@@ -9,27 +9,32 @@ Quick reference. The controlled rules and their rationale are in
 1. **Issue first.** Every change traces to a GitHub issue: bug, requirement or change request.
 2. **Branch** from `main`: `<type>/<issue>-<slug>`, e.g. `fix/78-pagination-offset`.
 3. **Commit** freely on the branch. Rebase and fixups are fine; never rewrite `main`.
-4. **Open a PR** with the template. The PR title becomes the commit on `main`.
-5. **Merge** by squash once CI is green and a code owner approves (SOP-25 §5.1.3.5).
+4. **Open a PR** with the template.
+5. **Merge** once CI is green and a code owner approves (SOP-25 §5.1.3.5).
    The branch is deleted and the issue closed.
+
+Squash or merge commit:
+
+- **Squash** (default) for short, focused branches such as fixes and small changes.
+  The PR title becomes the one commit on `main`.
+- **Merge commit** for longer features whose history matters, and in repos whose
+  release tooling (e.g. semantic-release) reads every commit. Every branch commit
+  lands on `main`, so each must follow the format below and carry `Refs: #N`;
+  fold fixups in first (`git rebase -i --autosquash main`).
 
 ## Commits: [Conventional Commits](https://www.conventionalcommits.org) (SDP-QTF-1 §4.2)
 
 ```
 fix(scan-list): correct pagination offset
-
-Off-by-one dropped the last result on each page.
-
-Refs: #78
 ```
 
-| Type | Use for |
-|---|---|
-| `feat` | New or changed requirement |
-| `fix` | Defect; `Refs:` the bug issue (SOP-25 §5.6.2.10) |
-| `chore(deps)` | Dependency added, updated or removed; tick SOUP in the PR |
-| `test` `refactor` `perf` `style` `docs` `ci` `chore` `revert` | As named |
-| `chore(release)` | Version bump, release prep |
+| Type                                                                  | Use for                                                   |
+| --------------------------------------------------------------------- | --------------------------------------------------------- |
+| `feat`                                                                | New or changed requirement                                |
+| `fix`                                                                 | Defect; `Refs:` the bug issue (SOP-25 §5.6.2.10)          |
+| `chore(deps)`                                                         | Dependency added, updated or removed; tick SOUP in the PR |
+| `test` `refactor` `perf` `style` `docs` `build` `ci` `chore` `revert` | As named                                                  |
+| `chore(release)`                                                      | Version bump, release prep                                |
 
 - Format: `<type>[(<scope>)][!]: <subject>`. Scope is optional: `fix: …` and `fix(scan-list): …` are both fine.
 - Subject: imperative, max 72 characters, no full stop.
@@ -38,7 +43,9 @@ Refs: #78
 - Trailers go in the last paragraph: `Refs: #N` (or `Closes: #N`, or `org/repo#N`).
   Regulated repos may add `Requirement:` and `Risk-Control:` with IDs exactly as in Formwork,
   qualified by document when the ID is document-scoped (e.g. `PRS-DP-1 SEC-001`).
-- Branch commits don't need `Refs:`: the PR body's `Closes: #N` reaches `main` with the squash.
+- Every commit on `main` references its issue (SOP-25 §5.6.2.10). With a squash, the PR
+  body's `Closes: #N` does this, so branch commits don't need `Refs:`. With a merge
+  commit, each branch commit needs `Refs: #N`.
   Release automation commits (e.g. `chore(release): 1.2.0`) are exempt.
 
 Local setup (copy `.gitmessage` and `git-hooks/` into the repo first):
@@ -53,13 +60,13 @@ CI backstop: call [`pr-lint.yml`](.github/workflows/pr-lint.yml), which checks t
 
 Start each comment with a label so intent is unambiguous:
 
-| Label | Meaning |
-|---|---|
-| `blocking:` | Must be fixed before merge. Say why. |
-| `suggestion:` | Optional improvement; author decides |
-| `question:` | Needs an answer, not necessarily a change |
-| `nit:` | Trivial or style; never blocks |
-| `praise:` | Worth keeping |
+| Label         | Meaning                                   |
+| ------------- | ----------------------------------------- |
+| `blocking:`   | Must be fixed before merge. Say why.      |
+| `suggestion:` | Optional improvement; author decides      |
+| `question:`   | Needs an answer, not necessarily a change |
+| `nit:`        | Trivial or style; never blocks            |
+| `praise:`     | Worth keeping                             |
 
 The author replies with the fixing commit or a reason. The reviewer resolves their own `blocking:` threads.
 

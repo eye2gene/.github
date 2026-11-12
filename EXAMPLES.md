@@ -60,12 +60,12 @@ Repo: `vscode-oct-viewer`, a small VS Code extension. It has CI (`build.yml`) bu
 
 3. Commit, push, open the PR titled `chore: adopt org commit and PR conventions`,
    body ending `Closes: #7`. `pr-lint` already runs on this PR.
-4. A repo admin sets merge settings (squash only, PR title and description as the
-   commit message, delete merged branches):
+4. A repo admin sets merge settings (squash or merge commit, no rebase; a squash
+   takes the PR title and description; delete merged branches):
 
    ```bash
    gh api -X PATCH repos/eye2gene/vscode-oct-viewer \
-     -F allow_squash_merge=true -F allow_merge_commit=false -F allow_rebase_merge=false \
+     -F allow_squash_merge=true -F allow_merge_commit=true -F allow_rebase_merge=false \
      -f squash_merge_commit_title=PR_TITLE -f squash_merge_commit_message=PR_BODY \
      -F delete_branch_on_merge=true
    ```
@@ -94,10 +94,11 @@ ERROR: Subject must follow Conventional Commits.
 git switch -c feat/3-export-scan-folder
 git commit -m "feat(webview): add export-to-folder button"
 git commit -m "feat(extension): write selected scan files to chosen folder"
-git commit -m "fixup! feat(webview): add export-to-folder button"   # allowed; squashed later
+git commit -m "fixup! feat(webview): add export-to-folder button"   # allowed; folded in on merge
 ```
 
-Branch commits don't need `Refs:`; the PR body carries the issue link.
+This branch will be squashed, so its commits don't need `Refs:`; the PR body carries the
+issue link. On a branch merged with a merge commit, each commit ends with `Refs: #3`.
 
 **Pull request** `feat(viewer): export scan to folder`, from the template:
 
@@ -145,7 +146,7 @@ The author fixes the blocker (`fix(extension): do not overwrite existing files o
 replies with the commit, and answers the question. The reviewer resolves their
 `blocking:` thread and approves.
 
-**Squash merge.** `main` gets one commit; issue #3 closes and the branch is deleted:
+**Squash merge** (a short branch). `main` gets one commit; issue #3 closes and the branch is deleted:
 
 ```text
 feat(viewer): export scan to folder (#8)
@@ -163,6 +164,7 @@ Closes: #3
 | Bug | `fix(scan-list): correct pagination offset` | Bug Report form records the version first observed |
 | Breaking change | `feat(api)!: drop v1 scan routes` | Say what breaks; impact is never "None" |
 | Dependency | `chore(deps): bump fastapi to 0.115` | Tick *SOUP / supplier* |
+| Long feature, history matters | `feat(viewer): add measurement tools` | Merge commit: every commit lands on `main` and carries `Refs: #N`; run `git rebase -i --autosquash main` first |
 | Repo from `e2g-pypkg` | as above | Its own agent rules apply; add only `CODEOWNERS` and the `pr-lint` caller |
 
 ## With the optional agent skills
