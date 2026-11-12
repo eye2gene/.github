@@ -19,8 +19,9 @@ Squash or merge commit:
   The PR title becomes the one commit on `main`.
 - **Merge commit** for longer features whose history matters, and in repos whose
   release tooling (e.g. semantic-release) reads every commit. Every branch commit
-  lands on `main`, so each must follow the format below and carry `Refs: #N`;
-  fold fixups in first (`git rebase -i --autosquash main`).
+  lands on `main`, so each must follow the format below; fold fixups in first
+  (`git rebase -i --autosquash main`). The merge commit takes the PR title and
+  description, so it carries `Closes: #N`.
 
 ## Commits: [Conventional Commits](https://www.conventionalcommits.org) (SDP-QTF-1 §4.2)
 
@@ -31,7 +32,7 @@ fix(scan-list): correct pagination offset
 | Type                                                                  | Use for                                                   |
 | --------------------------------------------------------------------- | --------------------------------------------------------- |
 | `feat`                                                                | New or changed requirement                                |
-| `fix`                                                                 | Defect; `Refs:` the bug issue (SOP-25 §5.6.2.10)          |
+| `fix`                                                                 | Defect; the PR closes the bug issue (SOP-25 §5.6.2.10)    |
 | `chore(deps)`                                                         | Dependency added, updated or removed; tick SOUP in the PR |
 | `test` `refactor` `perf` `style` `docs` `build` `ci` `chore` `revert` | As named                                                  |
 | `chore(release)`                                                      | Version bump, release prep                                |
@@ -43,9 +44,10 @@ fix(scan-list): correct pagination offset
 - Trailers go in the last paragraph: `Refs: #N` (or `Closes: #N`, or `org/repo#N`).
   Regulated repos may add `Requirement:` and `Risk-Control:` with IDs exactly as in Formwork,
   qualified by document when the ID is document-scoped (e.g. `PRS-DP-1 SEC-001`).
-- Every commit on `main` references its issue (SOP-25 §5.6.2.10). With a squash, the PR
-  body's `Closes: #N` does this, so branch commits don't need `Refs:`. With a merge
-  commit, each branch commit needs `Refs: #N`.
+- Every commit on `main` traces to its issue (SOP-25 §5.6.2.10) through the PR body's
+  `Closes: #N`, which `pr-lint` requires. A squash commit carries it; with a merge commit,
+  the merge commit carries it and contains the branch commits. Branch commits don't
+  need `Refs:`.
   Release automation commits (e.g. `chore(release): 1.2.0`) are exempt.
 
 Local setup (copy `.gitmessage` and `git-hooks/` into the repo first):
