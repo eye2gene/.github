@@ -41,13 +41,14 @@ fix(scan-list): correct pagination offset
 - Subject: imperative, max 72 characters, no full stop.
 - `!` marks a breaking change (`feat!: …`, `fix(api)!: …`); release tooling uses it to bump the version.
   Explain what breaks in the body or a `BREAKING CHANGE:` trailer, and assess impact in the PR.
-- Trailers go in the last paragraph: `Refs: #N` (or `Closes: #N`, or `org/repo#N`).
-  Regulated repos may add `Requirement:` and `Risk-Control:` with IDs exactly as in Formwork,
-  qualified by document when the ID is document-scoped (e.g. `PRS-DP-1 SEC-001`).
+- Default: the subject line only. Avoid a body and `Refs:`; the why goes in the PR
+  description and the PR's `Closes: #N` links the issue. Add a trailer (last paragraph)
+  only when needed: `BREAKING CHANGE:`, or in regulated repos `Requirement:` and
+  `Risk-Control:` with IDs exactly as in Formwork, qualified by document when the ID is
+  document-scoped (e.g. `PRS-DP-1 SEC-001`).
 - Every commit on `main` traces to its issue (SOP-25 §5.6.2.10) through the PR body's
   `Closes: #N`, which `pr-lint` requires. A squash commit carries it; with a merge commit,
-  the merge commit carries it and contains the branch commits. Branch commits don't
-  need `Refs:`.
+  the merge commit carries it and contains the branch commits.
   Release automation commits (e.g. `chore(release): 1.2.0`) are exempt.
 
 Local setup (copy `.gitmessage` and `git-hooks/` into the repo first):

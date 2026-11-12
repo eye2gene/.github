@@ -3,10 +3,10 @@
 #   e.g. fix(scan-list): correct pagination offset   or   fix: correct pagination offset
 #   (scope) optional; ! = breaking change
 #
-# Body: what changed and why (not how). Wrap at 72.
+# Default: subject only. Avoid a body; the why goes in the PR description.
 #
-# Trailers, last paragraph, one per line:
-#   Refs: #123               optional; the PR body's Closes: #N links the issue
+# Trailers, only when needed (last paragraph, one per line):
+#   Refs: #123               avoid; the PR's Closes: #N links the issue
 #   Requirement: PRS-DP-1 SEC-001  regulated repos; qualify bare IDs with their document
 #   Risk-Control: RC-TD-005        regulated repos, when applicable
 #   BREAKING CHANGE: <what breaks>  optional, explains a ! in the subject

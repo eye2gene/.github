@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Draft an Eye2Gene commit message (Conventional Commits, optional Refs trailer) for the staged changes. Use when the user asks to commit or write a commit message in an Eye2Gene repository.
+description: Draft an Eye2Gene commit message (Conventional Commits subject line) for the staged changes. Use when the user asks to commit or write a commit message in an Eye2Gene repository.
 disable-model-invocation: true
 ---
 
@@ -10,16 +10,14 @@ If the repo has its own commit rules (`AGENTS.md`, `CLAUDE.md`,
 `.kiro/steering/commits.md`), follow those; this skill only fills the gaps.
 
 1. Read `git diff --staged`. If nothing is staged, ask; don't stage files yourself.
-2. Draft the subject only:
+2. Write the subject line only:
 
    ```
    <type>[(<scope>)][!]: <imperative subject, max 72 chars, no full stop>
    ```
 
-   Add a body (what changed and why, wrapped at 72) only when the reason
-   isn't obvious from the subject. Add `Refs: #N` only if the issue number
-   is known (branch `<type>/<N>-<slug>`); never invent one and don't ask.
-   The PR body's `Closes: #N` links the issue.
+   Don't add a body or `Refs:` unless the user asks: the why goes in the PR
+   description, and the PR's `Closes: #N` links the issue.
 
    Types: `feat` (requirement), `fix` (defect), `chore(deps)` (dependency change),
    `test`, `refactor`, `perf`, `style`, `docs`, `build`, `ci`, `chore`, `revert`,
