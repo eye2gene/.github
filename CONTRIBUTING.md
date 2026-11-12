@@ -25,7 +25,7 @@ Squash or merge commit:
 
 ## Commits: [Conventional Commits](https://www.conventionalcommits.org) (SDP-QTF-1 §4.2)
 
-```
+```text
 fix(scan-list): correct pagination offset
 ```
 
@@ -58,6 +58,23 @@ git config core.hooksPath git-hooks && git config commit.template .gitmessage
 ```
 
 CI backstop: call [`pr-lint.yml`](.github/workflows/pr-lint.yml), which checks the PR title and issue link.
+
+## Python repositories
+
+Python repos are generated from the [`e2g-pypkg`](https://github.com/eye2gene/e2g-pypkg)
+template (private) and keep in step with it through `cruft update`: change the template,
+not the copies. They carry their own commit and agent rules, so from this repo they need
+only `.github/CODEOWNERS` and the `pr-lint` caller.
+
+- `just qa` formats, lints, type-checks and audits; `just test` runs the tests with coverage.
+  CI runs the same recipes through `python-ci.yml` of
+  [`e2g-workflows`](https://github.com/eye2gene/e2g-workflows).
+- A merge to `main` releases: python-semantic-release reads every commit since the last tag
+  (`fix` bumps the patch version, `feat` the minor, a breaking change `!` the major), writes
+  the changelog, tags and publishes. These are the repos whose release tooling reads every
+  commit (see *Squash or merge commit* above).
+- Dependencies come from PyPI through `uv` and the lock file, 7 days after their release;
+  `just allow <package>` lets a security fix in early for every project at once.
 
 ## Review comments
 
