@@ -8,10 +8,10 @@ are in [CONTRIBUTING.md](CONTRIBUTING.md) and WI-19; this page only shows them i
 Nothing is copied automatically. There are two mechanisms:
 
 | Files | How they reach a repo | Change here applies to |
-|---|---|---|
+| --- | --- | --- |
 | `ISSUE_TEMPLATE/`, `PULL_REQUEST_TEMPLATE.md`, `CONTRIBUTING.md`, `SECURITY.md` | **Inherited.** GitHub shows these in any org repo that has no file of its own. The repo never holds a copy. | Every repo, immediately, including new and private ones |
 | `pr-lint.yml` | **Called.** A six-line caller in the repo points at `@main` here. | Every repo that has the caller |
-| `CODEOWNERS.template`, `AGENTS.md`, `.gitmessage`, `git-hooks/` | **Copied** once per repo. | No repo: each keeps its copy |
+| `CODEOWNERS.template`, `AGENTS.md`, `.gitmessage`, `.gitattributes`, `git-hooks/` | **Copied** once per repo. | No repo: each keeps its copy |
 | Branch protection, merge settings | **Set** by an admin in each repo's settings. Not a file. | No repo |
 
 So a new repo gets the issue forms and PR template from minute one, but nothing is
@@ -42,7 +42,7 @@ Repo: `vscode-oct-viewer`, a small VS Code extension. It has CI (`build.yml`) bu
    mkdir -p .github/workflows
    cp $ORG/CODEOWNERS.template .github/CODEOWNERS   # then edit the owners
    cp $ORG/AGENTS.md . && printf '@AGENTS.md\n' > CLAUDE.md
-   cp $ORG/.gitmessage . && cp -r $ORG/git-hooks .
+   cp $ORG/.gitmessage $ORG/.gitattributes . && cp -r $ORG/git-hooks .
    git config core.hooksPath git-hooks && git config commit.template .gitmessage
    ```
 
@@ -161,7 +161,7 @@ Closes: #3
 ## Variants
 
 | Case | PR title | Notes |
-|---|---|---|
+| --- | --- | --- |
 | Bug | `fix(scan-list): correct pagination offset` | Bug Report form records the version first observed |
 | Breaking change | `feat(api)!: drop v1 scan routes` | Say what breaks; impact is never "None" |
 | Dependency | `chore(deps): bump fastapi to 0.115` | Tick *SOUP / supplier* |
@@ -173,7 +173,7 @@ Closes: #3
 After `/plugin install eye2gene-qms@eye2gene` in Claude Code:
 
 | Command | Does |
-|---|---|
+| --- | --- |
 | `/eye2gene-qms:issue <description>` | Drafts the issue in the form's fields; asks before creating it |
 | `/eye2gene-qms:commit` | Proposes a commit message from the staged diff |
 | `/eye2gene-qms:pr` | Fills the PR template from the diff and issue; shows it before creating |

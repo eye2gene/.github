@@ -51,7 +51,8 @@ fix(scan-list): correct pagination offset
   the merge commit carries it and contains the branch commits.
   Release automation commits (e.g. `chore(release): 1.2.0`) are exempt.
 
-Local setup (copy `.gitmessage` and `git-hooks/` into the repo first):
+Local setup (copy `.gitmessage`, `.gitattributes` and `git-hooks/` into the repo first; the
+attributes keep the hook on LF line endings whatever `core.autocrlf` says):
 
 ```bash
 git config core.hooksPath git-hooks && git config commit.template .gitmessage
