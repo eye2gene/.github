@@ -65,7 +65,7 @@ body:
       label: Criticality / Priority
       description: Per SOP-25 §5.6.2.2. Leave blank if unsure; set at triage. Safety-type bugs are always High.
       options:
-        - None
+        - None (no action needed)
         - Low
         - Moderate
         - High
