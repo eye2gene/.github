@@ -67,14 +67,15 @@ not the copies. They carry their own commit and agent rules, so from this repo t
 only `.github/CODEOWNERS` and the `pr-lint` caller.
 
 - `just qa` formats, lints, type-checks and audits; `just test` runs the tests with coverage.
-  CI runs the same recipes through `python-ci.yml` of
-  [`e2g-workflows`](https://github.com/eye2gene/e2g-workflows).
+  CI runs `just ci`, the check-only twin of `just qa`, and `just test` through `python-ci.yml`
+  of [`e2g-workflows`](https://github.com/eye2gene/e2g-workflows).
 - A merge to `main` releases: python-semantic-release reads every commit since the last tag
   (`fix` bumps the patch version, `feat` the minor, a breaking change `!` the major), writes
   the changelog, tags and publishes. These are the repos whose release tooling reads every
   commit (see *Squash or merge commit* above).
-- Dependencies come from PyPI through `uv` and the lock file, 7 days after their release;
-  `just allow <package>` lets a security fix in early for every project at once.
+- Dependencies come from PyPI through `uv` and the lock file, 7 days after their release.
+  `just allow <package>` opens a PR to e2g-workflows that lets a security fix in early for every
+  project; once it is merged, each project takes the fix with `just up`.
 
 ## Review comments
 
