@@ -30,3 +30,5 @@ approval is a human QMS control (SOP-25 §5.1.3.5).
 
 For each thread, fix it and reply with the commit SHA, or reply with a reason.
 Don't resolve someone else's `blocking:` thread.
+
+The Never list in the org [`AGENTS.md`](https://github.com/eye2gene/.github/blob/main/AGENTS.md) applies.

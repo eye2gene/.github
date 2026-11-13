@@ -1,21 +1,25 @@
 # Examples
 
 How this repo reaches other repos, and what working under it looks like. The rules
-are in [CONTRIBUTING.md](CONTRIBUTING.md) and WI-19; this page only shows them in use.
+are in [CONTRIBUTING.md](CONTRIBUTING.md) and SOP-25; this page only shows them in use.
 
 ## How this repo applies to other repos
 
-Nothing is copied automatically. There are two mechanisms:
+Nothing is copied automatically. A file reaches a repo in one of four ways:
 
 | Files | How they reach a repo | Change here applies to |
 | --- | --- | --- |
-| `ISSUE_TEMPLATE/`, `PULL_REQUEST_TEMPLATE.md`, `CONTRIBUTING.md`, `SECURITY.md` | **Inherited.** GitHub shows these in any org repo that has no file of its own. The repo never holds a copy. | Every repo, immediately, including new and private ones |
+| `.github/ISSUE_TEMPLATE/`, `PULL_REQUEST_TEMPLATE.md`, `CONTRIBUTING.md`, `SECURITY.md` | **Inherited.** GitHub shows these in any org repo that has no file of its own. The repo never holds a copy. | Every repo, immediately, including new and private ones |
 | `pr-lint.yml` | **Called.** A six-line caller in the repo points at `@main` here. | Every repo that has the caller |
 | `CODEOWNERS.template`, `AGENTS.md`, `.gitmessage`, `.gitattributes`, `git-hooks/` | **Copied** once per repo. | No repo: each keeps its copy |
 | Branch protection, merge settings | **Set** by an admin in each repo's settings. Not a file. | No repo |
 
 So a new repo gets the issue forms and PR template from minute one, but nothing is
 checked or enforced until someone does the one-time setup below.
+
+The issue forms come as a set: a repo with any file of its own in `.github/ISSUE_TEMPLATE/`
+gets none of the org forms or chooser links. Repos using the org forms have no blank
+issues; docs, chores and other work use the Task form.
 
 ## Example 1: adopting the conventions in an existing repo
 
@@ -71,8 +75,10 @@ Repo: `vscode-oct-viewer`, a small VS Code extension. It has CI (`build.yml`) bu
      -F delete_branch_on_merge=true
    ```
 
-   and adds branch protection on `main` (WI-19 §5.7): PR with one code-owner approval,
-   required checks `pr-lint` and the repo's CI, no force pushes. The owners in
+   and adds branch protection on `main` (SOP-25 §5.1.1.2): PR with one code-owner approval,
+   required checks `lint / pr-lint` (the name this caller reports) and the repo's CI, no
+   force pushes. Pick the checks from the list GitHub offers: a name that never reports
+   blocks every merge. The owners in
    `CODEOWNERS` must have write access, or code-owner review enforces nothing.
 
 ## Example 2: a feature under the conventions
@@ -112,8 +118,9 @@ to a folder the user picks.
 Users want to hand a scan to another tool without finding it on disk (#3).
 
 ## Impact assessment
-- [x] None outside this repository
-- [ ] Data protection / patient data   <!-- files stay on the user's machine -->
+- [ ] None outside this repository
+- [x] Data protection / patient data: the export copies scan files to a local folder
+      the user picks; nothing is uploaded. Flagged for assessment.
 
 ## Verification
 CI green; exported a synthetic test scan, file count matches.
@@ -130,7 +137,7 @@ Closes: #3
 
 ```text
 PR title: Use '<type>[(<scope>)][!]: <subject>', e.g. 'fix(api): handle empty scan list'. ... Got: Export button
-Issue link: Add 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10).
+Issue link: Add a line 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10).
 ```
 
 **Review.** Every comment starts with a label:

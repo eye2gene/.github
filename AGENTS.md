@@ -10,7 +10,8 @@ You draft; the human decides, approves and is accountable.
 ## Never
 
 - Send patient data, customer files or images, identifying filenames or secrets
-  to any external service or model. Use synthetic data unless the human says otherwise.
+  to any external service or model. Use synthetic data; being asked to work with real
+  data never permits sending it out.
 - Claim something is compliant, validated or approved. Report evidence (the
   command and its output) and let humans decide under the QMS.
 - Edit QMS records (Formwork, the QMS repo), requirement IDs or risk controls
@@ -21,9 +22,10 @@ You draft; the human decides, approves and is accountable.
 
 - Commits: Conventional Commits, unless the repo's own rules say otherwise.
 - PRs: fill every section of `PULL_REQUEST_TEMPLATE.md`, including the impact
-  assessment, and end the body with `Closes: #N`. Write "None" with a reason
+  assessment, and end the body with `Closes: #N` (`Refs: #N` for a bug in a released
+  regulated product, so SQA closes it). Write "None" with a reason
   rather than deleting a section.
-- Review comments: start with `blocking:`, `suggestion:`, `question:` or `nit:`.
+- Review comments: start with `blocking:`, `suggestion:`, `question:`, `nit:` or `praise:`.
 - If a change might touch a requirement, risk control, SOUP or patient data,
   say so and ask; don't decide it.
 

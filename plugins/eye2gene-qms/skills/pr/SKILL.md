@@ -6,11 +6,13 @@ disable-model-invocation: true
 
 # Pull request
 
-1. Gather `git log main..HEAD`, `git diff main...HEAD --stat` and the linked
-   issue (from the branch name, or ask).
+1. Find the PR's base branch: the repo's default branch, unless the PR is stacked on
+   another branch. Read `git log <base>..HEAD` and the full `git diff <base>...HEAD`, and
+   get the linked issue (ask if it isn't known).
 2. Use the repo's own PR template if it has one, otherwise the org default:
    What changed, Why, Impact assessment, Verification, Checklist, and a final
-   `Closes: #N` line. Keep every section; write `None: <reason>` instead of deleting one.
+   `Closes: #N` line (`Refs: #N` for a bug in a released regulated product: SQA closes
+   it after verification). Keep every section; write `None: <reason>` instead of deleting one.
 3. Title: a Conventional Commits subject, max 72 characters. It becomes the
    commit on `main` when the PR is squashed.
 4. Impact assessment (SOP-2 §5.1.2.3): tick only what the diff shows. Flag
@@ -22,3 +24,4 @@ disable-model-invocation: true
 6. Show the draft. Run `gh pr create` only when asked; open as a draft unless told otherwise.
 
 No patient data, identifying filenames or secrets in the PR.
+The Never list in the org [`AGENTS.md`](https://github.com/eye2gene/.github/blob/main/AGENTS.md) applies.

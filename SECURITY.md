@@ -7,7 +7,12 @@ repository defines its own `SECURITY.md`, that takes precedence.
 
 Please do **not** open a public GitHub issue for security vulnerabilities.
 
-Instead, report it privately including:
+Instead, report it privately:
+
+- **Public repositories:** use the repository's **Security** tab → **Report a vulnerability**.
+- **Eye2Gene staff:** tell the Information Security Officer directly.
+
+Include:
 
 - A description of the vulnerability and its potential impact
 - Steps to reproduce

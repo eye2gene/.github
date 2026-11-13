@@ -1,5 +1,5 @@
 <!-- Title becomes the commit on main when squashed: <type>[(<scope>)][!]: <subject>
-     e.g. fix(scan-list): correct pagination offset. ! = breaking change. Rules: CONTRIBUTING.md / WI-19.
+     e.g. fix(scan-list): correct pagination offset. ! = breaking change. Rules: CONTRIBUTING.md.
      Never paste patient data, identifying filenames or secrets anywhere in a PR. -->
 
 ## What changed
@@ -16,7 +16,7 @@
 - [ ] Product design / configuration
 - [ ] Risk management (risk control affected or new hazard)
 - [ ] Regulatory / QA (process or QMS document)
-- [ ] SOUP / supplier (SOUP list updated)
+- [ ] SOUP / supplier (third-party software; SOUP list updated)
 - [ ] Data protection / patient data
 
 ## Verification
@@ -29,7 +29,8 @@
 - [ ] Code-owner review requested
 
 <!-- Traceability: keep as the last lines; they become the commit trailers.
-     Closes:/Refs: is required (SOP-25 §5.6.2.10). Regulated repos may add
+     Closes:/Refs: is required (SOP-25 §5.6.2.10); a bug in a released regulated product
+     uses Refs: so SQA closes it after verification. Regulated repos may add
      Requirement: PRS-DP-1 SEC-001 and Risk-Control: RC-TD-005 lines. -->
 
 Closes: #
