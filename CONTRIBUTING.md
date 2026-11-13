@@ -43,7 +43,7 @@ fix(scan-list): correct pagination offset
 - `!` marks a breaking change (`feat!: …`, `fix(api)!: …`); release tooling uses it to bump the version.
   Explain what breaks in the body or a `BREAKING CHANGE:` trailer, and assess impact in the PR.
 - Default: the subject line only. Avoid a body and `Refs:`; the why goes in the PR
-  description and the PR's `Closes: #N` links the issue. Add a trailer (last paragraph)
+  description. Add a trailer (last paragraph)
   only when needed: `BREAKING CHANGE:`, or in regulated repos `Requirement:` and
   `Risk-Control:` with IDs exactly as in Formwork, qualified by document when the ID is
   document-scoped (e.g. `PRS-DP-1 SEC-001`).
