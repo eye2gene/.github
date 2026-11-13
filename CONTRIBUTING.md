@@ -8,7 +8,8 @@ Quick reference. The binding rules are in **SOP-25 Software Development Process*
 
 1. **Issue first.** Every change traces to a GitHub issue: bug, requirement or change request.
 2. **Branch** from `main`: `<type>/<short-name>`, e.g. `fix/pagination-offset`.
-3. **Commit** freely on the branch. Rebase and fixups are fine; never rewrite `main`.
+3. **Commit** on the branch, one logical change per commit: if the subject needs "and",
+   split it. Rebase and fixups are fine; never rewrite `main`.
 4. **Open a PR** with the template.
 5. **Merge** once CI is green and a code owner approves (SOP-25 §5.1.3.5).
    The branch is deleted and the issue closes (bugs in released regulated products

@@ -2,6 +2,7 @@
 # ^ <type>[(<scope>)][!]: <subject>   imperative, max 72 chars, no full stop
 #   e.g. fix(scan-list): correct pagination offset   or   fix: correct pagination offset
 #   (scope) optional; ! = breaking change
+#   One logical change per commit: if the subject needs "and", split it.
 #
 # Default: subject only. Avoid a body; the why goes in the PR description.
 #
