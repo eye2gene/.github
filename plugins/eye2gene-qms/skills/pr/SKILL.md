@@ -7,11 +7,11 @@ disable-model-invocation: true
 # Pull request
 
 1. Gather `git log main..HEAD`, `git diff main...HEAD --stat` and the linked
-   issue (ask if it isn't known). For a bug in a released regulated product, link it
-   with `Refs: #N`, not `Closes:`: SQA closes it after verification.
+   issue (ask if it isn't known).
 2. Use the repo's own PR template if it has one, otherwise the org default:
    What changed, Why, Impact assessment, Verification, Checklist, and a final
-   `Closes: #N` line. Keep every section; write "None: <reason>" instead of deleting one.
+   `Closes: #N` line (`Refs: #N` for a bug in a released regulated product: SQA closes
+   it after verification). Keep every section; write "None: <reason>" instead of deleting one.
 3. Title: a Conventional Commits subject, max 72 characters. It becomes the
    commit on `main` when the PR is squashed.
 4. Impact assessment (SOP-2 §5.1.2.3): tick only what the diff shows. Flag

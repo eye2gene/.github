@@ -112,8 +112,9 @@ to a folder the user picks.
 Users want to hand a scan to another tool without finding it on disk (#3).
 
 ## Impact assessment
-- [x] None outside this repository
-- [ ] Data protection / patient data   <!-- files stay on the user's machine -->
+- [ ] None outside this repository
+- [x] Data protection / patient data: the export copies scan files to a local folder
+      the user picks; nothing is uploaded. Flagged for assessment.
 
 ## Verification
 CI green; exported a synthetic test scan, file count matches.
