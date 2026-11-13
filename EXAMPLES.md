@@ -72,7 +72,9 @@ Repo: `vscode-oct-viewer`, a small VS Code extension. It has CI (`build.yml`) bu
    ```
 
    and adds branch protection on `main` (SOP-25 §5.1.1.2): PR with one code-owner approval,
-   required checks `pr-lint` and the repo's CI, no force pushes. The owners in
+   required checks `lint / pr-lint` (the name this caller reports) and the repo's CI, no
+   force pushes. Pick the checks from the list GitHub offers: a name that never reports
+   blocks every merge. The owners in
    `CODEOWNERS` must have write access, or code-owner review enforces nothing.
 
 ## Example 2: a feature under the conventions
