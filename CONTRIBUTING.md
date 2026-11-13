@@ -30,13 +30,13 @@ Squash or merge commit:
 fix(scan-list): correct pagination offset
 ```
 
-| Type                                                                  | Use for                                                   |
-| --------------------------------------------------------------------- | --------------------------------------------------------- |
-| `feat`                                                                | New or changed requirement                                |
-| `fix`                                                                 | Defect; the PR links the bug issue (SOP-25 §5.6.2.10)     |
-| `chore(deps)`                                                         | Dependency added, updated or removed; tick SOUP in the PR |
-| `test` `refactor` `perf` `style` `docs` `build` `ci` `chore` `revert` | As named                                                  |
-| `chore(release)`                                                      | Version bump, release prep                                |
+| Type                                                                  | Use for                                                                          |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `feat`                                                                | New or changed requirement                                                       |
+| `fix`                                                                 | Defect; the PR links the bug issue (SOP-25 §5.6.2.10)                            |
+| `chore(deps)`                                                         | Dependency added, updated or removed; tick SOUP (third-party software) in the PR |
+| `test` `refactor` `perf` `style` `docs` `build` `ci` `chore` `revert` | As named                                                                         |
+| `chore(release)`                                                      | Version bump, release prep                                                       |
 
 - Format: `<type>[(<scope>)][!]: <subject>`. Scope is optional: `fix: …` and `fix(scan-list): …` are both fine.
 - Subject: imperative, max 72 characters, no full stop.
@@ -81,7 +81,8 @@ The author replies with the fixing commit or a reason. The reviewer resolves the
 - Before a bug is assigned, the triager sets its scope, type and criticality (Safety bugs
   are always High) and adds the component label (SOP-25 §5.1.3.4, §5.6.2.2).
 - A fix for a bug in a released regulated product uses `Refs: #N`, not `Closes:`, so the issue
-  stays open until SQA has verified the fix and closes it (SOP-25 §5.6.2.11).
+  stays open until SQA (software quality assurance) has verified the fix and closes it
+  (SOP-25 §5.6.2.11).
 - Bug statuses (SOP-25 §5.6.2) in GitHub:
 
   | Status      | In GitHub                                                                                              |

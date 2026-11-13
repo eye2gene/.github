@@ -16,7 +16,7 @@
 - [ ] Product design / configuration
 - [ ] Risk management (risk control affected or new hazard)
 - [ ] Regulatory / QA (process or QMS document)
-- [ ] SOUP / supplier (SOUP list updated)
+- [ ] SOUP / supplier (third-party software; SOUP list updated)
 - [ ] Data protection / patient data
 
 ## Verification
