@@ -7,7 +7,8 @@ disable-model-invocation: true
 # Pull request
 
 1. Gather `git log main..HEAD`, `git diff main...HEAD --stat` and the linked
-   issue (ask if it isn't known).
+   issue (ask if it isn't known). For a bug in a released regulated product, link it
+   with `Refs: #N`, not `Closes:`: SQA closes it after verification.
 2. Use the repo's own PR template if it has one, otherwise the org default:
    What changed, Why, Impact assessment, Verification, Checklist, and a final
    `Closes: #N` line. Keep every section; write "None: <reason>" instead of deleting one.

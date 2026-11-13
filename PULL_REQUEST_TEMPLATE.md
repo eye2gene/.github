@@ -28,7 +28,8 @@
 - [ ] Code-owner review requested
 
 <!-- Traceability: keep as the last lines; they become the commit trailers.
-     Closes:/Refs: is required (SOP-25 §5.6.2.10). Regulated repos may add
+     Closes:/Refs: is required (SOP-25 §5.6.2.10); a bug in a released regulated product
+     uses Refs: so SQA closes it after verification. Regulated repos may add
      Requirement: PRS-DP-1 SEC-001 and Risk-Control: RC-TD-005 lines. -->
 
 Closes: #

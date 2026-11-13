@@ -17,11 +17,11 @@ Squash or merge commit:
 
 - **Squash** (default) for short, focused branches such as fixes and small changes.
   The PR title becomes the one commit on `main`.
-- **Merge commit** for longer features whose history matters, and in repos whose
-  release tooling (e.g. semantic-release) reads every commit. Every branch commit
-  lands on `main`, so each must follow the format below; fold fixups in first
-  (`git rebase -i --autosquash main`). The merge commit takes the PR title and
-  description, so it carries `Closes: #N`.
+- **Merge commit** for longer features whose history matters, or when each commit
+  should get its own changelog line (semantic-release reads every commit). Every branch
+  commit lands on `main`; one without a type is left out of the version and changelog.
+  Fold fixups in first (`git rebase -i --autosquash main`). The merge commit takes the
+  PR title and description, so it carries `Closes: #N`.
 
 ## Commits: [Conventional Commits](https://www.conventionalcommits.org) (SDP-QTF-1 §4.2)
 
@@ -49,7 +49,8 @@ fix(scan-list): correct pagination offset
 - Every commit on `main` traces to its issue (SOP-25 §5.6.2.10) through the PR body's
   `Closes: #N`, which `pr-lint` requires. A squash commit carries it; with a merge commit,
   the merge commit carries it and contains the branch commits.
-  Release automation commits (e.g. `chore(release): 1.2.0`) are exempt.
+  Bot PRs (Dependabot, release automation such as `chore(release): 1.2.0`) are exempt, and
+  a PR from GitHub's Revert button links the PR it reverts.
 
 Local setup (copy `.gitmessage` and `git-hooks/` into the repo first):
 
@@ -76,6 +77,18 @@ The author replies with the fixing commit or a reason. The reviewer resolves the
 ## Issues
 
 - Use the forms. The triager adds the component label (SOP-25 §5.1.3.4).
+- A fix for a bug in a released regulated product uses `Refs: #N`, not `Closes:`, so the issue
+  stays open until SQA has verified the fix and closes it (SOP-25 §5.6.2.11).
+- Bug statuses (SOP-25 §5.6.2) in GitHub:
+
+  | Status      | In GitHub                                  |
+  | ----------- | ------------------------------------------ |
+  | New         | Open, no assignee                          |
+  | Assigned    | Assigned to a developer                    |
+  | In Progress | A PR is open                               |
+  | Feedback    | PR merged; issue open while SQA tests      |
+  | Closed      | Closed by SQA, or by triage with a reason  |
+
 - Quality events (NCR, CAPA, complaint, security incident, data breach) go in the
   QMS repository, not here (SOP-3, SOP-33). The issue chooser links to them.
 
