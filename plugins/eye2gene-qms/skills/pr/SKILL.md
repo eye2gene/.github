@@ -23,3 +23,4 @@ disable-model-invocation: true
 6. Show the draft. Run `gh pr create` only when asked; open as a draft unless told otherwise.
 
 No patient data, identifying filenames or secrets in the PR.
+The Never list in the org [`AGENTS.md`](https://github.com/eye2gene/.github/blob/main/AGENTS.md) applies.

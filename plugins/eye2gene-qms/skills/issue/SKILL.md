@@ -27,3 +27,4 @@ needed; testable acceptance criteria.
 
 Title: a plain description, no type prefix (labels carry the type). Show the
 draft; run `gh issue create` only when asked. No patient data.
+The Never list in the org [`AGENTS.md`](https://github.com/eye2gene/.github/blob/main/AGENTS.md) applies.

@@ -27,6 +27,8 @@ If the repo has its own commit rules (`AGENTS.md`, `CLAUDE.md`,
    Add `Requirement:` or `Risk-Control:` trailers only with IDs the user or
    the issue gives you.
 3. If the diff changes a dependency manifest, say the SOUP list may need updating.
-4. Show the message. Commit only if the user asked you to.
+4. Show the message. Commit only if the user asked you to, and never on the default
+   branch: check `git branch --show-current` first.
 
 No patient data, customer file paths or secrets in the message.
+The Never list in the org [`AGENTS.md`](https://github.com/eye2gene/.github/blob/main/AGENTS.md) applies.
