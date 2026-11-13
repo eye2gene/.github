@@ -6,8 +6,8 @@
 
 *                  @eye2gene/technical-leads
 
-# Regulated repos: QA owns process and QMS-facing files
-# /.github/        @eye2gene/quality-assurance
-# /docs/           @eye2gene/quality-assurance
-# /CHANGELOG.md    @eye2gene/quality-assurance
-# /docs/risk/      @eye2gene/technical-leads
+# Regulated repos: QA co-owns process and QMS-facing files. Keep the Project Lead's
+# team on every line: the last matching line replaces the ones above it.
+# /.github/        @eye2gene/quality-assurance @eye2gene/technical-leads
+# /docs/           @eye2gene/quality-assurance @eye2gene/technical-leads
+# /CHANGELOG.md    @eye2gene/quality-assurance @eye2gene/technical-leads
