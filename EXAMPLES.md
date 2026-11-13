@@ -9,7 +9,7 @@ Nothing is copied automatically. A file reaches a repo in one of four ways:
 
 | Files | How they reach a repo | Change here applies to |
 |---|---|---|
-| `ISSUE_TEMPLATE/`, `PULL_REQUEST_TEMPLATE.md`, `CONTRIBUTING.md`, `SECURITY.md` | **Inherited.** GitHub shows these in any org repo that has no file of its own. The repo never holds a copy. | Every repo, immediately, including new and private ones |
+| `.github/ISSUE_TEMPLATE/`, `PULL_REQUEST_TEMPLATE.md`, `CONTRIBUTING.md`, `SECURITY.md` | **Inherited.** GitHub shows these in any org repo that has no file of its own. The repo never holds a copy. | Every repo, immediately, including new and private ones |
 | `pr-lint.yml` | **Called.** A six-line caller in the repo points at `@main` here. | Every repo that has the caller |
 | `CODEOWNERS.template`, `AGENTS.md`, `.gitmessage`, `git-hooks/` | **Copied** once per repo. | No repo: each keeps its copy |
 | Branch protection, merge settings | **Set** by an admin in each repo's settings. Not a file. | No repo |
