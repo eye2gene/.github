@@ -78,7 +78,8 @@ The author replies with the fixing commit or a reason. The reviewer resolves the
 ## Issues
 
 - Use the forms: Bug Report, Feature Request, or Task for docs, chores and other work.
-  The triager adds the component label (SOP-25 §5.1.3.4).
+- Before a bug is assigned, the triager sets its scope, type and criticality (Safety bugs
+  are always High) and adds the component label (SOP-25 §5.1.3.4, §5.6.2.2).
 - A fix for a bug in a released regulated product uses `Refs: #N`, not `Closes:`, so the issue
   stays open until SQA has verified the fix and closes it (SOP-25 §5.6.2.11).
 - Bug statuses (SOP-25 §5.6.2) in GitHub:
