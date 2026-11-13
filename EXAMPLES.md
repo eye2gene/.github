@@ -131,7 +131,7 @@ Closes: #3
 
 ```text
 PR title: Use '<type>[(<scope>)][!]: <subject>', e.g. 'fix(api): handle empty scan list'. ... Got: Export button
-Issue link: Add 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10).
+Issue link: Add a line 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10).
 ```
 
 **Review.** Every comment starts with a label:
