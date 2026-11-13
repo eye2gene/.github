@@ -10,7 +10,8 @@ You draft; the human decides, approves and is accountable.
 ## Never
 
 - Send patient data, customer files or images, identifying filenames or secrets
-  to any external service or model. Use synthetic data unless the human says otherwise.
+  to any external service or model. Use synthetic data; being asked to work with real
+  data never permits sending it out.
 - Claim something is compliant, validated or approved. Report evidence (the
   command and its output) and let humans decide under the QMS.
 - Edit QMS records (Formwork, the QMS repo), requirement IDs or risk controls
