@@ -36,7 +36,7 @@ Repo: `vscode-oct-viewer`, a small VS Code extension. It has CI (`build.yml`) bu
 
    ```bash
    git switch main && git pull
-   git switch -c chore/7-adopt-org-conventions
+   git switch -c chore/adopt-org-conventions
    ORG=../.github                                   # local clone of eye2gene/.github
 
    mkdir -p .github/workflows
@@ -92,7 +92,7 @@ ERROR: Subject must follow Conventional Commits.
 ```
 
 ```bash
-git switch -c feat/3-export-scan-folder
+git switch -c feat/export-scan-folder
 git commit -m "feat(webview): add export-to-folder button"
 git commit -m "feat(extension): write selected scan files to chosen folder"
 git commit -m "fixup! feat(webview): add export-to-folder button"   # allowed; folded in on merge

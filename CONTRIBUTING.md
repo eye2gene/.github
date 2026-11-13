@@ -7,7 +7,7 @@ Quick reference. The controlled rules and their rationale are in
 ## Flow (SOP-25 §5.1.3, SDP §10.3)
 
 1. **Issue first.** Every change traces to a GitHub issue: bug, requirement or change request.
-2. **Branch** from `main`: `<type>/<issue>-<slug>`, e.g. `fix/78-pagination-offset`.
+2. **Branch** from `main`: `<type>/<short-name>`, e.g. `fix/pagination-offset`.
 3. **Commit** freely on the branch. Rebase and fixups are fine; never rewrite `main`.
 4. **Open a PR** with the template.
 5. **Merge** once CI is green and a code owner approves (SOP-25 §5.1.3.5).
