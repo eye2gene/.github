@@ -17,6 +17,10 @@ Nothing is copied automatically. A file reaches a repo in one of four ways:
 So a new repo gets the issue forms and PR template from minute one, but nothing is
 checked or enforced until someone does the one-time setup below.
 
+The issue forms come as a set: a repo with any file of its own in `.github/ISSUE_TEMPLATE/`
+gets none of the org forms or chooser links. Repos using the org forms have no blank
+issues; docs, chores and other work use the Task form.
+
 ## Example 1: adopting the conventions in an existing repo
 
 Repo: `vscode-oct-viewer`, a small VS Code extension. It has CI (`build.yml`) but no

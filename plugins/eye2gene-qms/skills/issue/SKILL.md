@@ -1,6 +1,6 @@
 ---
 name: issue
-description: Draft an Eye2Gene GitHub issue (bug or feature) using the org form fields, or route quality events to the QMS repository. Use when the user asks to file, raise or write up an issue, bug or feature request in an Eye2Gene repository.
+description: Draft an Eye2Gene GitHub issue (bug, feature or task) using the org form fields, or route quality events to the QMS repository. Use when the user asks to file, raise or write up an issue, bug or feature request in an Eye2Gene repository.
 disable-model-invocation: true
 ---
 
@@ -22,6 +22,8 @@ stop. For a security incident or breach, the Information Security Officer
 
 **Feature:** "As a <role>, I want <action>, so that <benefit>"; why it's
 needed; testable acceptance criteria.
+
+**Task** (docs, chores, other work): what needs doing and why; done when.
 
 Title: a plain description, no type prefix (labels carry the type). Show the
 draft; run `gh issue create` only when asked. No patient data.
