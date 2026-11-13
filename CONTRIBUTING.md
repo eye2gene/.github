@@ -11,7 +11,8 @@ Quick reference. The binding rules are in **SOP-25 Software Development Process*
 3. **Commit** freely on the branch. Rebase and fixups are fine; never rewrite `main`.
 4. **Open a PR** with the template.
 5. **Merge** once CI is green and a code owner approves (SOP-25 §5.1.3.5).
-   The branch is deleted and the issue closed.
+   The branch is deleted and the issue closes (bugs in released regulated products
+   stay open for SQA: see [Issues](#issues)).
 
 Squash or merge commit:
 
@@ -32,7 +33,7 @@ fix(scan-list): correct pagination offset
 | Type                                                                  | Use for                                                   |
 | --------------------------------------------------------------------- | --------------------------------------------------------- |
 | `feat`                                                                | New or changed requirement                                |
-| `fix`                                                                 | Defect; the PR closes the bug issue (SOP-25 §5.6.2.10)    |
+| `fix`                                                                 | Defect; the PR links the bug issue (SOP-25 §5.6.2.10)     |
 | `chore(deps)`                                                         | Dependency added, updated or removed; tick SOUP in the PR |
 | `test` `refactor` `perf` `style` `docs` `build` `ci` `chore` `revert` | As named                                                  |
 | `chore(release)`                                                      | Version bump, release prep                                |
@@ -82,13 +83,13 @@ The author replies with the fixing commit or a reason. The reviewer resolves the
   stays open until SQA has verified the fix and closes it (SOP-25 §5.6.2.11).
 - Bug statuses (SOP-25 §5.6.2) in GitHub:
 
-  | Status      | In GitHub                                  |
-  | ----------- | ------------------------------------------ |
-  | New         | Open, no assignee                          |
-  | Assigned    | Assigned to a developer                    |
-  | In Progress | A PR is open                               |
-  | Feedback    | PR merged; issue open while SQA tests      |
-  | Closed      | Closed by SQA, or by triage with a reason  |
+  | Status      | In GitHub                                                                                              |
+  | ----------- | ------------------------------------------------------------------------------------------------------ |
+  | New         | Open, no assignee                                                                                      |
+  | Assigned    | Assigned to a developer                                                                                |
+  | In Progress | A PR is open                                                                                           |
+  | Feedback    | PR merged; issue open while SQA tests                                                                  |
+  | Closed      | Closed by SQA after verification, or by triage (duplicate, rejected or criticality None) with a reason |
 
 - Quality events (NCR, CAPA, complaint, security incident, data breach) go in the
   QMS repository, not here (SOP-3, SOP-33). The issue chooser links to them.
