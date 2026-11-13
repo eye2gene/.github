@@ -12,7 +12,7 @@ If the repo has its own commit rules (`AGENTS.md`, `CLAUDE.md`,
 1. Read `git diff --staged`. If nothing is staged, ask; don't stage files yourself.
 2. Write the subject line only:
 
-   ```
+   ```text
    <type>[(<scope>)][!]: <imperative subject, max 72 chars, no full stop>
    ```
 

@@ -12,6 +12,7 @@ stop. For a security incident or breach, the Information Security Officer
 (and the DPO, for personal data) must be told immediately.
 
 **Bug** (fields of the org bug form):
+
 - What happened: Did / Saw / Expected
 - Steps to reproduce
 - Version or build first observed (SOP-25 §5.6.2.1)
@@ -20,7 +21,7 @@ stop. For a security incident or breach, the Information Security Officer
 - Evidence: redacted or synthetic only
 - Patient safety note: a candidate hazard ID or "NO MATCHING HAZARD", only if the user supplies it
 
-**Feature:** "As a <role>, I want <action>, so that <benefit>"; why it's
+**Feature:** "As a `<role>`, I want `<action>`, so that `<benefit>`"; why it's
 needed; testable acceptance criteria.
 
 Title: a plain description, no type prefix (labels carry the type). Show the

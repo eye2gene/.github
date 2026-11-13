@@ -27,4 +27,4 @@ You draft; the human decides, approves and is accountable.
 - If a change might touch a requirement, risk control, SOUP or patient data,
   say so and ask; don't decide it.
 
-Templates and optional skills: https://github.com/eye2gene/.github
+Templates and optional skills: <https://github.com/eye2gene/.github>

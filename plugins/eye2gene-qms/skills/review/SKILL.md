@@ -6,7 +6,8 @@ disable-model-invocation: true
 
 # Code review
 
-**Reviewing**
+## Reviewing
+
 1. Traceability first: title format, a linked issue, and an impact assessment
    that matches the diff (dependency change ↔ SOUP, data handling ↔ data
    protection). Anything missing is `blocking:`.
@@ -25,6 +26,7 @@ disable-model-invocation: true
 Show the comments; post them only when asked. Never approve: code-owner
 approval is a human QMS control (SOP-25 §5.1.3.5).
 
-**Responding to review**
+## Responding to review
+
 For each thread, fix it and reply with the commit SHA, or reply with a reason.
 Don't resolve someone else's `blocking:` thread.
