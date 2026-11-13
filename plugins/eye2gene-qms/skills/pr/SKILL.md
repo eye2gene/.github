@@ -6,8 +6,9 @@ disable-model-invocation: true
 
 # Pull request
 
-1. Gather `git log main..HEAD`, `git diff main...HEAD --stat` and the linked
-   issue (ask if it isn't known).
+1. Find the PR's base branch: the repo's default branch, unless the PR is stacked on
+   another branch. Read `git log <base>..HEAD` and the full `git diff <base>...HEAD`, and
+   get the linked issue (ask if it isn't known).
 2. Use the repo's own PR template if it has one, otherwise the org default:
    What changed, Why, Impact assessment, Verification, Checklist, and a final
    `Closes: #N` line (`Refs: #N` for a bug in a released regulated product: SQA closes
