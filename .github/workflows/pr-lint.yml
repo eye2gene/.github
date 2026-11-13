@@ -35,11 +35,14 @@ jobs:
           status=0
           if printf '%s\n' "$TITLE" | grep -qE '^Revert ".+"$'; then
             KEYS="$KEYS|reverts?"  # GitHub's Revert button; its body links the reverted PR
-          elif ! printf '%s\n' "$TITLE" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^ ]"; then
+          elif ! printf '%s\n' "$TITLE" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^[:space:]]"; then
             echo "::error title=PR title::Use '<type>[(<scope>)][!]: <subject>', e.g. 'fix(api): handle empty scan list'. Types: ${TYPES//|/ }. Got: $TITLE"
             status=1
           elif [ ${#TITLE} -gt 72 ]; then
             echo "::error title=PR title::Title is ${#TITLE} characters (max 72)."
+            status=1
+          elif printf '%s\n' "$TITLE" | grep -qE '\.$'; then
+            echo "::error title=PR title::Remove the full stop at the end of the title."
             status=1
           fi
           # The issue link is a line that starts with the keyword. HTML comments and code blocks don't count.

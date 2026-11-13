@@ -13,8 +13,9 @@ esac
 TYPES='feat|fix|test|refactor|perf|style|docs|build|ci|chore|revert'
 fail() { printf '\nERROR: %s\n\n  %s\n\n  Format: <type>[(<scope>)][!]: <subject>   e.g. fix(api): handle empty scan list\n  Types:  %s\n  See .gitmessage or CONTRIBUTING.md.\n\n' "$1" "$SUBJECT" "$TYPES" | sed 's/|/ /g' >&2; exit 1; }
 
-printf '%s\n' "$SUBJECT" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^ ]" \
+printf '%s\n' "$SUBJECT" | grep -qE "^($TYPES)(\([a-z0-9._/-]+\))?!?: [^[:space:]]" \
   || fail "Subject must follow Conventional Commits."
 [ ${#SUBJECT} -le 72 ] || fail "Subject is ${#SUBJECT} characters (max 72)."
+case "$SUBJECT" in *.) fail "Subject must not end with a full stop." ;; esac
 [ -z "$(printf '%s\n' "$MSG" | sed -n '2p')" ] || fail "Line 2 must be blank (separates subject from body)."
 exit 0
