@@ -2,7 +2,7 @@ name: PR Lint
 
 # Reusable check: the PR title is a Conventional Commits subject (it becomes the
 # commit on main when squashed) and the body links an issue (SOP-25 §5.6.2.10).
-# Rules: WI-19 Git & GitHub Conventions; CONTRIBUTING.md.
+# Rules: CONTRIBUTING.md.
 #
 # Call it from a repo:
 #

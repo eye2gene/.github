@@ -1,5 +1,5 @@
 <!-- Title becomes the commit on main when squashed: <type>[(<scope>)][!]: <subject>
-     e.g. fix(scan-list): correct pagination offset. ! = breaking change. Rules: CONTRIBUTING.md / WI-19.
+     e.g. fix(scan-list): correct pagination offset. ! = breaking change. Rules: CONTRIBUTING.md.
      Never paste patient data, identifying filenames or secrets anywhere in a PR. -->
 
 ## What changed

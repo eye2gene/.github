@@ -1,11 +1,11 @@
 # Examples
 
 How this repo reaches other repos, and what working under it looks like. The rules
-are in [CONTRIBUTING.md](CONTRIBUTING.md) and WI-19; this page only shows them in use.
+are in [CONTRIBUTING.md](CONTRIBUTING.md) and SOP-25; this page only shows them in use.
 
 ## How this repo applies to other repos
 
-Nothing is copied automatically. There are two mechanisms:
+Nothing is copied automatically. A file reaches a repo in one of four ways:
 
 | Files | How they reach a repo | Change here applies to |
 |---|---|---|
@@ -71,7 +71,7 @@ Repo: `vscode-oct-viewer`, a small VS Code extension. It has CI (`build.yml`) bu
      -F delete_branch_on_merge=true
    ```
 
-   and adds branch protection on `main` (WI-19 §5.7): PR with one code-owner approval,
+   and adds branch protection on `main` (SOP-25 §5.1.1.2): PR with one code-owner approval,
    required checks `pr-lint` and the repo's CI, no force pushes. The owners in
    `CODEOWNERS` must have write access, or code-owner review enforces nothing.
 

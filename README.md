@@ -1,8 +1,8 @@
 # .github
 
-Org-wide templates for Eye2Gene repositories. The rules and their rationale
-live in the QMS, in **WI-19 Git & GitHub Conventions**; this repo holds only
-what people and agents use day to day.
+Org-wide conventions and templates for Eye2Gene repositories. The binding rules
+are in **SOP-25 Software Development Process** (QMS); this repo holds what people
+and agents use day to day to meet them.
 
 | File | Applies to other repos | Purpose |
 |---|---|---|
@@ -19,7 +19,7 @@ what people and agents use day to day.
 
 GitHub inherits only the community health files marked "Automatically" (repos
 can override them). Everything else must be copied or called per repo, and
-branch protection must be set in each repo's settings (WI-19), unless an org
+branch protection must be set in each repo's settings (SOP-25 §5.1.1.2), unless an org
 admin covers all repos with one org ruleset.
 
 Language-specific CI (Python today) lives in

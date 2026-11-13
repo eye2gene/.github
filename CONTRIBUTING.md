@@ -1,7 +1,7 @@
 # Contributing to Eye2Gene
 
-Quick reference. The controlled rules and their rationale are in
-**WI-19 Git & GitHub Conventions** (QMS). Where a repo has its own conventions
+Quick reference. The binding rules are in **SOP-25 Software Development Process**
+(QMS); this page is how we meet them. Where a repo has its own conventions
 (its own `CONTRIBUTING.md`, agent rules, or a template such as `e2g-pypkg`), those win.
 
 ## Flow (SOP-25 §5.1.3, SDP §10.3)

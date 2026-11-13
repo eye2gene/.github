@@ -6,7 +6,6 @@
 # Default: subject only. Avoid a body; the why goes in the PR description.
 #
 # Trailers, only when needed (last paragraph, one per line):
-#   Refs: #123               avoid; the PR's Closes: #N links the issue
 #   Requirement: PRS-DP-1 SEC-001  regulated repos; qualify bare IDs with their document
 #   Risk-Control: RC-TD-005        regulated repos, when applicable
 #   BREAKING CHANGE: <what breaks>  optional, explains a ! in the subject
@@ -19,4 +18,4 @@
 #   type!: / type(scope)!:  breaking change, e.g. feat(api)!: drop v1 routes
 #                  (release tooling bumps the version)
 #
-# Full rules: WI-19 Git & GitHub Conventions (QMS)
+# Full rules: CONTRIBUTING.md
