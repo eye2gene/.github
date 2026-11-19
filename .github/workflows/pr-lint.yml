@@ -49,17 +49,18 @@ jobs:
           # The issue link is a line that starts with the keyword and that GitHub shows as text. Each such
           # line gets a mark, GitHub renders the body, and a mark must be left outside comments and code.
           LINK="($KEYS):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/issues/[0-9]+)([^[:alnum:]_/-]|$)"
-          MARK=e2gIssueLinkLine
+          MARK=e2gIssueLink$RANDOM$RANDOM  # a fresh mark the body does not hold, so no text can stand in for it
+          while [[ $BODY == *"$MARK"* ]]; do MARK=e2gIssueLink$RANDOM$RANDOM; done
           MARKED=$(printf '%s\n' "$BODY" | tr -d '\r' | LINK="$LINK" MARK="$MARK" perl -pe 's/^([ \t]*)(?=$ENV{LINK})/$1$ENV{MARK} /i')
           SHOWN=""
-          if printf '%s\n' "$MARKED" | grep -q "$MARK"; then
+          if [[ $MARKED == *"$MARK"* ]]; then
             if ! HTML=$(printf '%s\n' "$MARKED" | gh api markdown/raw -H 'Content-Type: text/plain' --input -); then
               echo "::error title=Issue link::GitHub did not render the PR body, so the issue link could not be checked. Run the job again."
               exit 1
             fi
             SHOWN=$(printf '%s\n' "$HTML" | perl -0pe 's/<pre\b.*?<\/pre>|<code\b.*?<\/code>//gs; s/<[^>]*>//g')
           fi
-          if ! printf '%s\n' "$SHOWN" | grep -q "$MARK"; then
+          if [[ $SHOWN != *"$MARK"* ]]; then
             echo "::error title=Issue link::Add a line 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10)."
             status=1
           fi
