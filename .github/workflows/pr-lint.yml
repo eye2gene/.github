@@ -45,9 +45,16 @@ jobs:
             echo "::error title=PR title::Remove the full stop at the end of the title."
             status=1
           fi
-          # The issue link is a line that starts with the keyword. HTML comments and code blocks don't count.
-          TEXT=$(printf '%s\n' "$BODY" | tr -d '\r' | perl -0pe 's/<!--.*?-->//gs; s/^[ \t]*```.*?^[ \t]*```[^\n]*$//gms')
-          REF="^[[:space:]]*($KEYS):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/issues/[0-9]+)([^[:alnum:]_/-]|$)"
+          # The issue link is a line that starts with the keyword. What Markdown hides or shows as code
+          # doesn't count: an HTML comment, a ``` or ~~~ fence (closed or not), a line indented as code.
+          TEXT=$(printf '%s\n' "$BODY" | tr -d '\r' | perl -lne '
+            if ($fence) { $fence = 0 if /^ {0,3}\Q$char\E{$len,}[ \t]*$/; next }
+            if ($comment) { next unless s/^.*?-->//; $comment = 0 }
+            s/<!--.*?-->//g;
+            $comment = 1 if s/<!--.*//;
+            if (/^ {0,3}(`{3,})[^`]*$/ || /^ {0,3}(~{3,})/) { ($fence, $char, $len) = (1, substr($1, 0, 1), length $1); next }
+            print unless /^(?: {4}|\t)/')
+          REF="^ {0,3}($KEYS):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/issues/[0-9]+)([^[:alnum:]_/-]|$)"
           if ! printf '%s\n' "$TEXT" | grep -qiE "$REF"; then
             echo "::error title=Issue link::Add a line 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10)."
             status=1
