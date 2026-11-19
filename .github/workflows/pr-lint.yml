@@ -29,6 +29,7 @@ jobs:
         env:
           TITLE: ${{ github.event.pull_request.title }}
           BODY: ${{ github.event.pull_request.body }}
+          GH_TOKEN: ${{ github.token }}  # to ask GitHub to render the body; the call needs no permission
         run: |
           TYPES='feat|fix|test|refactor|perf|style|docs|build|ci|chore|revert'
           KEYS='close[sd]?|fix(e[sd])?|resolve[sd]?|refs?'
@@ -45,17 +46,20 @@ jobs:
             echo "::error title=PR title::Remove the full stop at the end of the title."
             status=1
           fi
-          # The issue link is a line that starts with the keyword. What Markdown hides or shows as code
-          # doesn't count: an HTML comment, a ``` or ~~~ fence (closed or not), a line indented as code.
-          TEXT=$(printf '%s\n' "$BODY" | tr -d '\r' | perl -lne '
-            if ($fence) { $fence = 0 if /^ {0,3}\Q$char\E{$len,}[ \t]*$/; next }
-            if ($comment) { next unless s/^.*?-->//; $comment = 0 }
-            s/<!--.*?-->//g;
-            $comment = 1 if s/<!--.*//;
-            if (/^ {0,3}(`{3,})[^`]*$/ || /^ {0,3}(~{3,})/) { ($fence, $char, $len) = (1, substr($1, 0, 1), length $1); next }
-            print unless /^(?: {4}|\t)/')
-          REF="^ {0,3}($KEYS):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/issues/[0-9]+)([^[:alnum:]_/-]|$)"
-          if ! printf '%s\n' "$TEXT" | grep -qiE "$REF"; then
+          # The issue link is a line that starts with the keyword and that GitHub shows as text. Each such
+          # line gets a mark, GitHub renders the body, and a mark must be left outside comments and code.
+          LINK="($KEYS):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/issues/[0-9]+)([^[:alnum:]_/-]|$)"
+          MARK=e2gIssueLinkLine
+          MARKED=$(printf '%s\n' "$BODY" | tr -d '\r' | LINK="$LINK" MARK="$MARK" perl -pe 's/^([ \t]*)(?=$ENV{LINK})/$1$ENV{MARK} /i')
+          SHOWN=""
+          if printf '%s\n' "$MARKED" | grep -q "$MARK"; then
+            if ! HTML=$(printf '%s\n' "$MARKED" | gh api markdown/raw -H 'Content-Type: text/plain' --input -); then
+              echo "::error title=Issue link::GitHub did not render the PR body, so the issue link could not be checked. Run the job again."
+              exit 1
+            fi
+            SHOWN=$(printf '%s\n' "$HTML" | perl -0pe 's/<pre\b.*?<\/pre>|<code\b.*?<\/code>//gs; s/<[^>]*>//g')
+          fi
+          if ! printf '%s\n' "$SHOWN" | grep -q "$MARK"; then
             echo "::error title=Issue link::Add a line 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10)."
             status=1
           fi
