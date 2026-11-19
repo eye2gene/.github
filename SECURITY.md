@@ -15,10 +15,8 @@ Instead, report it privately:
   `https://github.com/eye2gene/<repository>/security/advisories/new`. Private
   vulnerability reporting is enabled on Eye2Gene's public repositories, and
   only the repository's maintainers see the report.
-- **If that option is missing or does not work for you:** open an issue in the
-  repository that says only that you have a security report to make, with no
-  detail of the vulnerability. A maintainer will reply with a private way to
-  send it.
+- **If that option is missing or does not work for you:** email
+  `security@eye2gene.com`. Do not put the details in a public issue.
 - **Eye2Gene staff and collaborators, for any repository:** tell the
   Information Security Officer directly.
 
