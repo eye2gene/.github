@@ -5,12 +5,22 @@ repository defines its own `SECURITY.md`, that takes precedence.
 
 ## Reporting a Vulnerability
 
-Please do **not** open a public GitHub issue for security vulnerabilities.
+Please do **not** put the details of a security vulnerability in a public
+GitHub issue.
 
 Instead, report it privately:
 
-- **Public repositories:** use the repository's **Security** tab → **Report a vulnerability**.
-- **Eye2Gene staff:** tell the Information Security Officer directly.
+- **Public repositories:** open the repository's **Security** tab and choose
+  **Report a vulnerability**, or go straight to
+  `https://github.com/eye2gene/<repository>/security/advisories/new`. Private
+  vulnerability reporting is enabled on Eye2Gene's public repositories, and
+  only the repository's maintainers see the report.
+- **If that option is missing or does not work for you:** open an issue in the
+  repository that says only that you have a security report to make, with no
+  detail of the vulnerability. A maintainer will reply with a private way to
+  send it.
+- **Eye2Gene staff and collaborators, for any repository:** tell the
+  Information Security Officer directly.
 
 Include:
 
