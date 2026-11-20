@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Quality Event or QMS document change
+    url: https://github.com/Eye2Gene/QMS/issues/new/choose
+    about: NCR, CAPA, complaint, incident, SCAR or a change to a QMS document. These are issues in the QMS repository, created from its forms (SOP-3 §5.3). Do not file them here.
+  - name: Security Incident or Data Breach
+    url: https://github.com/Eye2Gene/QMS/issues/new/choose
+    about: First notify the Information Security Officer (and the DPO for personal data) immediately per SOP-33 §5.2, then log a Data Breach / Security Incident quality event (SOP-33 §5.2.4).

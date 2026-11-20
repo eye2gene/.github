@@ -1,0 +1,12 @@
+{
+  "name": "eye2gene",
+  "description": "Eye2Gene org agent tooling aligned with the QMS and the org GitHub templates",
+  "owner": { "name": "Eye2Gene" },
+  "plugins": [
+    {
+      "name": "eye2gene-qms",
+      "source": "./plugins/eye2gene-qms",
+      "description": "On-demand skills for QMS-aligned commits, PRs, issues and code review"
+    }
+  ]
+}
