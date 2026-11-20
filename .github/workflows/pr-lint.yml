@@ -29,6 +29,7 @@ jobs:
         env:
           TITLE: ${{ github.event.pull_request.title }}
           BODY: ${{ github.event.pull_request.body }}
+          GH_TOKEN: ${{ github.token }}  # to ask GitHub to render the body; that call needs no permission
         run: |
           TYPES='feat|fix|test|refactor|perf|style|docs|build|ci|chore|revert'
           KEYS='close[sd]?|fix(e[sd])?|resolve[sd]?|refs?'
@@ -45,10 +46,22 @@ jobs:
             echo "::error title=PR title::Remove the full stop at the end of the title."
             status=1
           fi
-          # The issue link is a line that starts with the keyword. HTML comments and code blocks don't count.
-          TEXT=$(printf '%s\n' "$BODY" | tr -d '\r' | perl -0pe 's/<!--.*?-->//gs; s/^[ \t]*```.*?^[ \t]*```[^\n]*$//gms')
-          REF="^[[:space:]]*($KEYS):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/issues/[0-9]+)([^[:alnum:]_/-]|$)"
-          if ! printf '%s\n' "$TEXT" | grep -qiE "$REF"; then
+          # The issue link is a line that starts with the keyword and that GitHub shows as text. Each such
+          # line gets a mark, GitHub renders the body, and a mark must be left outside comments and code.
+          LINK="($KEYS):?[[:space:]]+(([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#[0-9]+|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/issues/[0-9]+)([^[:alnum:]_/-]|$)"
+          MARK=e2gIssueLink$RANDOM$RANDOM  # a fresh mark the body does not hold, so no text can stand in for it
+          while [[ $BODY == *"$MARK"* ]]; do MARK=e2gIssueLink$RANDOM$RANDOM; done
+          MARKED=$(printf '%s\n' "$BODY" | tr -d '\r' | LINK="$LINK" MARK="$MARK" perl -pe 's/^([ \t]*)(?=$ENV{LINK})/$1$ENV{MARK} /i')
+          SHOWN=""
+          if [[ $MARKED == *"$MARK"* ]]; then
+            if ! HTML=$(gh api markdown -f mode=gfm -f text="$MARKED"); then  # gfm: as a PR description is rendered
+              echo "::error title=Issue link::GitHub did not render the PR body, so the issue link could not be checked. Run the job again."
+              exit 1
+            fi
+            # Keep the text that has no <pre> or <code> around it, however deep these are nested.
+            SHOWN=$(printf '%s\n' "$HTML" | perl -0ne 'for (split /(<[^>]*>)/) { if (/^<(?:pre|code)[\s>]/) { $in++ } elsif (/^<\/(?:pre|code)\s*>/) { $in-- if $in } elsif (!/^</ && !$in) { print } }')
+          fi
+          if [[ $SHOWN != *"$MARK"* ]]; then
             echo "::error title=Issue link::Add a line 'Closes: #N' or 'Refs: #N' to the PR body. Every change on main traces to an issue (SOP-25 §5.6.2.10)."
             status=1
           fi
