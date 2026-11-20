@@ -22,7 +22,7 @@ can override them). Everything else must be copied or called per repo, and
 branch protection must be set in each repo's settings (SOP-25 §5.1.1.2), unless an org
 admin covers all repos with one org ruleset.
 
-Language-specific CI (Python today) lives in
+Language-specific CI lives in
 [`eye2gene/e2g-workflows`](https://github.com/eye2gene/e2g-workflows); this repo
 holds only checks that apply to every language, such as `pr-lint`.
 
