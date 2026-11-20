@@ -15,21 +15,21 @@ and agents use day to day to meet them.
 | [`CODEOWNERS.template`](CODEOWNERS.template) | Copy in | Required per repo; does not inherit |
 | [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents. Extend below it without contradicting it; recheck your copy when this one changes |
 | [`plugins/eye2gene-qms`](plugins/eye2gene-qms) | Install | Optional agent skills: commit, PR, issue, review |
-| [`EXAMPLES.md`](EXAMPLES.md) | No | How this repo reaches other repos, with worked examples |
 
 GitHub inherits only the community health files marked "Automatically" (repos
 can override them). Everything else must be copied or called per repo, and
 branch protection must be set in each repo's settings (SOP-25 §5.1.1.2), unless an org
 admin covers all repos with one org ruleset.
 
-Language-specific CI lives in
+Language-specific CI (Python today) lives in
 [`eye2gene/e2g-workflows`](https://github.com/eye2gene/e2g-workflows); this repo
 holds only checks that apply to every language, such as `pr-lint`.
 
 ## Set up a repo
 
 The issue forms, PR template, CONTRIBUTING and SECURITY reach every repo by
-themselves. The rest needs one PR per repo.
+themselves. The rest needs one PR per repo. The issue forms come as a set: a repo
+with any file of its own in `.github/ISSUE_TEMPLATE/` gets none of the org forms.
 
 **1. Required: two files.**
 
@@ -46,9 +46,23 @@ themselves. The rest needs one PR per repo.
       uses: eye2gene/.github/.github/workflows/pr-lint.yml@main
   ```
 
-**2. Admin, once.** Branch protection: the org ruleset, or the repo's own settings
-until that exists. Merge settings: see
-[EXAMPLES.md](EXAMPLES.md#example-1-adopting-the-conventions-in-an-existing-repo).
+**2. Admin, once.**
+
+- *Branch protection* (SOP-25 §5.1.1.2): the org ruleset, or the repo's own settings
+  until that exists. Require a PR with one code-owner approval, the checks
+  `lint / pr-lint` and the repo's CI, and no force pushes. Pick the checks from the
+  list GitHub offers: a name that never reports blocks every merge. The owners in
+  `CODEOWNERS` need Write access, or code-owner review enforces nothing.
+- *Merge settings:* squash or merge commit, no rebase; both take the PR title and
+  description, so `Closes: #N` lands on `main`; delete merged branches.
+
+  ```bash
+  gh api -X PATCH repos/eye2gene/<repo> \
+    -F allow_squash_merge=true -F allow_merge_commit=true -F allow_rebase_merge=false \
+    -f squash_merge_commit_title=PR_TITLE -f squash_merge_commit_message=PR_BODY \
+    -f merge_commit_title=PR_TITLE -f merge_commit_message=PR_BODY \
+    -F delete_branch_on_merge=true
+  ```
 
 **3. Optional.**
 
