@@ -26,20 +26,41 @@ Language-specific CI (Python today) lives in
 [`eye2gene/e2g-workflows`](https://github.com/eye2gene/e2g-workflows); this repo
 holds only checks that apply to every language, such as `pr-lint`.
 
-## New repo setup
+## Set up a repo
 
-```bash
-cp <this-repo>/{.gitmessage,.gitattributes,AGENTS.md} . && cp -r <this-repo>/git-hooks .
-mkdir -p .github && cp <this-repo>/CODEOWNERS.template .github/CODEOWNERS   # then edit
-printf '@AGENTS.md\n' > CLAUDE.md                        # Claude Code reads CLAUDE.md
-git config core.hooksPath git-hooks && git config commit.template .gitmessage
-```
+The issue forms, PR template, CONTRIBUTING and SECURITY reach every repo by
+themselves. The rest needs one PR per repo.
 
-Then add the `pr-lint.yml` caller (see the comment at the top of that file) and apply branch protection.
+**1. Required: two files.**
 
-Repos generated from `e2g-pypkg` (they have a `.cruft.json`) get commit and agent rules from the
-template: add only `.github/CODEOWNERS` and the `pr-lint` caller, and change anything else in the
-template so `cruft update` carries it.
+- `.github/CODEOWNERS`: copy [`CODEOWNERS.template`](CODEOWNERS.template) and set the owners.
+- `.github/workflows/pr-lint.yml`:
+
+  ```yaml
+  name: PR Lint
+  on:
+    pull_request:
+      types: [opened, edited, reopened, synchronize]
+  jobs:
+    lint:
+      uses: eye2gene/.github/.github/workflows/pr-lint.yml@main
+  ```
+
+**2. Admin, once.** Branch protection: the org ruleset, or the repo's own settings
+until that exists. Merge settings: see
+[EXAMPLES.md](EXAMPLES.md#example-1-adopting-the-conventions-in-an-existing-repo).
+
+**3. Optional.**
+
+- *AI agents:* copy `AGENTS.md`. If the repo already has a `CLAUDE.md`, add
+  `@AGENTS.md` as its first line.
+- *Commit check before you push* (recommended where the repo uses merge commits):
+  copy `.gitmessage`, `.gitattributes` and `git-hooks/`. Each person then runs
+  `git config core.hooksPath git-hooks && git config commit.template .gitmessage`
+  once in their clone.
+
+Repos generated from `e2g-pypkg` already have step 3: add only step 1, and change
+anything else in the template so `cruft update` carries it.
 
 ## Agent skills (optional)
 
