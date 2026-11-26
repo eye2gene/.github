@@ -55,7 +55,7 @@ fix(scan-list): correct pagination offset
   Bot PRs (Dependabot, release automation such as `chore(release): 1.2.0`) are exempt, and
   a PR from GitHub's Revert button links the PR it reverts.
 
-Local setup (copy `.gitmessage`, `.gitattributes` and `git-hooks/` into the repo first; the
+Local setup, where the repo has `git-hooks/` (the org README says how to add it; the
 attributes keep the hook on LF line endings whatever `core.autocrlf` says):
 
 ```bash
