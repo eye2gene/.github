@@ -1,3 +1,0 @@
-# The commit hook and template must keep LF line endings, whatever core.autocrlf says
-git-hooks/* text eol=lf
-.gitmessage text eol=lf
