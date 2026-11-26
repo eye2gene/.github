@@ -1,0 +1,20 @@
+name: Task
+description: Documentation, maintenance or other work that is not a bug or a feature
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs doing?
+      description: The work and why it is needed. No patient data, identifying filenames or secrets.
+    validations:
+      required: true
+
+  - type: textarea
+    id: done_when
+    attributes:
+      label: Done when
+      description: How we will know it is finished.
+      placeholder: |
+        - [ ] ...
+    validations:
+      required: false
