@@ -10,7 +10,8 @@ disable-model-invocation: true
 
 1. Traceability first: title format, a linked issue, and an impact assessment
    that matches the diff (dependency change ↔ SOUP, data handling ↔ data
-   protection). Anything missing is `blocking:`.
+   protection). Anything missing is `blocking:`. Bot PRs need no linked issue, and a
+   PR from GitHub's Revert button links the PR it reverts instead; both match pr-lint.
 2. Then correctness, tests, and patient data exposure. Real data in fixtures,
    logs or error messages is `blocking:`.
 3. One comment per point: `<label>: <what>, because <why>`, plus a suggested fix when it's cheap.
