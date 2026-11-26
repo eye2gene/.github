@@ -55,7 +55,7 @@ fix(scan-list): correct pagination offset
   Bot PRs (Dependabot, release automation such as `chore(release): 1.2.0`) are exempt, and
   a PR from GitHub's Revert button links the PR it reverts.
 
-Local setup, where the repo has `git-hooks/` (the org README says how to add it; the
+Local setup, where the repo has `git-hooks/` (`setup-repo.sh` in `eye2gene/.github-private` adds it; the
 attributes keep the hook on LF line endings whatever `core.autocrlf` says):
 
 ```bash
@@ -68,8 +68,8 @@ CI backstop: call [`pr-lint.yml`](.github/workflows/pr-lint.yml), which checks t
 
 Python repos are generated from the [`e2g-pypkg`](https://github.com/eye2gene/e2g-pypkg)
 template (private) and keep in step with it through `cruft update`: change the template,
-not the copies. They carry their own commit and agent rules, so from this repo they need
-only `.github/CODEOWNERS` and the `pr-lint` caller.
+not the copies. They carry their own commit and agent rules, so they need only
+`.github/CODEOWNERS` and the `pr-lint` caller, which `setup-repo.sh` adds.
 
 - `just qa` formats, lints, type-checks and audits; `just test` runs the tests with coverage.
   CI runs `just ci`, the check-only twin of `just qa`, and `just test` through `python-ci.yml`
@@ -124,5 +124,6 @@ issue, PR, commit, comment, log or screenshot.
 
 ## AI agents
 
-Agents follow [`AGENTS.md`](AGENTS.md). The human who opens or approves the
+Agents follow the repo's `AGENTS.md`, which starts with the org rules (members:
+[`eye2gene/.github-private`](https://github.com/eye2gene/.github-private)). The human who opens or approves the
 PR is accountable for every line.
