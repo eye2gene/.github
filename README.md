@@ -10,10 +10,10 @@ and agents use day to day to meet them.
 | [`PULL_REQUEST_TEMPLATE.md`](PULL_REQUEST_TEMPLATE.md) | Automatically | PR body with the SOP-2 impact assessment |
 | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) | Automatically | Bug, feature and task forms; routes quality events to the QMS repo |
 | [`SECURITY.md`](SECURITY.md) | Automatically | Vulnerability reporting |
-| [`.gitmessage`](.gitmessage), [`git-hooks/commit-msg`](git-hooks/commit-msg), [`.gitattributes`](.gitattributes) | Copy in | Commit template and format check; the attributes keep both on LF line endings |
+| [`.gitmessage`](.gitmessage), [`git-hooks/commit-msg`](git-hooks/commit-msg), [`.gitattributes`](.gitattributes) | Copy in (optional) | Commit template and format check; the attributes keep both on LF line endings |
 | [`pr-lint.yml`](.github/workflows/pr-lint.yml) | Call from the repo | CI check: PR title format and issue link |
 | [`CODEOWNERS.template`](CODEOWNERS.template) | Copy in | Required per repo; does not inherit |
-| [`AGENTS.md`](AGENTS.md) | Copy in | Minimal always-on rules for AI agents. Extend below it without contradicting it; recheck your copy when this one changes |
+| [`AGENTS.md`](AGENTS.md) | Copy in (optional) | Minimal always-on rules for AI agents. Extend below it without contradicting it; recheck your copy when this one changes |
 | [`plugins/eye2gene-qms`](plugins/eye2gene-qms) | Install | Optional agent skills: commit, PR, issue, review |
 
 GitHub inherits only the community health files marked "Automatically" (repos
