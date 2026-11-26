@@ -40,7 +40,8 @@ fix(scan-list): correct pagination offset
 | `test` `refactor` `perf` `style` `docs` `build` `ci` `chore` `revert` | As named                                                                         |
 | `chore(release)`                                                      | Version bump, release prep                                                       |
 
-- Format: `<type>[(<scope>)][!]: <subject>`. Scope is optional: `fix: …` and `fix(scan-list): …` are both fine.
+- Format: `<type>[(<scope>)][!]: <subject>`. Scope is optional, lowercase, with no spaces: `fix: …` and
+  `fix(scan-list): …` are both fine.
 - Subject: imperative, max 72 characters, no full stop.
 - `!` marks a breaking change (`feat!: …`, `fix(api)!: …`); release tooling uses it to bump the version.
   Explain what breaks in the body or a `BREAKING CHANGE:` trailer, and assess impact in the PR.
