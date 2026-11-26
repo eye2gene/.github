@@ -7,7 +7,8 @@ Quick reference. The binding rules are in **SOP-25 Software Development Process*
 ## Flow (SOP-25 §5.1.3, SDP §10.3)
 
 1. **Issue first.** Every change traces to a GitHub issue: bug, requirement or change request.
-2. **Branch** from `main`: `<type>/<short-name>`, e.g. `fix/pagination-offset`.
+2. **Branch** from the default branch (`main` in most repos; below, `main` means it):
+   `<type>/<short-name>`, e.g. `fix/pagination-offset`.
 3. **Commit** on the branch, one logical change per commit: if the subject needs "and",
    split it. Rebase and fixups are fine; never rewrite `main`.
 4. **Open a PR** with the template.

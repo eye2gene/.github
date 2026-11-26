@@ -16,7 +16,8 @@ You draft; the human decides, approves and is accountable.
   command and its output) and let humans decide under the QMS.
 - Edit QMS records (Formwork, the QMS repo), requirement IDs or risk controls
   without explicit approval.
-- Commit to `main`, force-push a shared branch or rewrite `main` history.
+- Commit to the default branch, force-push a shared branch or rewrite the
+  default branch's history.
 
 ## Always
 
