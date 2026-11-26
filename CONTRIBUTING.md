@@ -55,12 +55,9 @@ fix(scan-list): correct pagination offset
   Bot PRs (Dependabot, release automation such as `chore(release): 1.2.0`) are exempt, and
   a PR from GitHub's Revert button links the PR it reverts.
 
-Local setup, where the repo has `git-hooks/` (`setup-repo.sh` in `eye2gene/.github-private` adds it; the
-attributes keep the hook on LF line endings whatever `core.autocrlf` says):
-
-```bash
-git config core.hooksPath git-hooks && git config commit.template .gitmessage
-```
+Local setup, once per clone: run `setup-repo.sh --local` from the members-only
+[`eye2gene/.github-private`](https://github.com/eye2gene/.github-private). It installs the
+commit check and the org agent rules in your clone only; nothing is committed.
 
 CI backstop: call [`pr-lint.yml`](.github/workflows/pr-lint.yml), which checks the PR title and issue link.
 
@@ -124,6 +121,6 @@ issue, PR, commit, comment, log or screenshot.
 
 ## AI agents
 
-Agents follow the repo's `AGENTS.md`, which starts with the org rules (members:
-[`eye2gene/.github-private`](https://github.com/eye2gene/.github-private)). The human who opens or approves the
+Agents follow the org rules, which `setup-repo.sh --local` puts in your clone's
+`AGENTS.md`, plus any rules the repo commits. The human who opens or approves the
 PR is accountable for every line.
