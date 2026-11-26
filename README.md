@@ -28,10 +28,14 @@ inherit. Org members set both up with one command from the members-only
 also holds the commit hook, the agent rules (`AGENTS.md`) and the agent skills:
 
 ```bash
+# Replace eye2gene/<repo> with the repo to set up, e.g. eye2gene/data-portal
 gh api repos/eye2gene/.github-private/contents/setup-repo.sh \
   -H "Accept: application/vnd.github.raw" | bash -s -- --repo eye2gene/<repo>
 ```
 
 It opens a setup issue and PR, and sets the merge settings if you're an admin on
-the repo. Branch protection (SOP-25 §5.1.1.2) comes from the org ruleset once an
-org owner creates it; until then an admin can add `--protect`.
+the repo. Each developer then runs it once more with `--local` inside their clone,
+which installs the commit check and the agent rules on their machine only.
+
+Branch protection (SOP-25 §5.1.1.2) comes from the org ruleset once an org owner
+creates it; until then an admin can add `--protect`.
